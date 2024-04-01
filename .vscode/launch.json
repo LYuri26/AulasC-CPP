@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/lenon/Documentos/GitHub/AulasC-CPP",
-      "program": "/home/lenon/Documentos/GitHub/AulasC-CPP/build/Debug/outDebug",
+      "cwd": "/home/lenon/Documentos/GitHub/AulasC-CPP/trabalhos",
+      "program": "/home/lenon/Documentos/GitHub/AulasC-CPP/trabalhos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
