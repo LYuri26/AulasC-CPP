@@ -1,7 +1,7 @@
 #include <iostream> // Biblioteca para entrada e saída padrão
 #include <string>   // Biblioteca para manipulação de strings
 #include <vector>   // Biblioteca para utilização de vetores
-#include <limits>   // Biblioteca <limits> para utilizar numeric_limits
+#include <limits>   // Biblioteca para utilizar numeric_limits
 
 using namespace std; // Permite o uso de elementos da biblioteca padrão (std) sem prefixo
 
@@ -26,23 +26,22 @@ string cadastrarClasse()
 // Função para cadastrar os atributos do personagem
 vector<int> cadastrarAtributos()
 {
-    // Vetor com os nomes dos atributos
-    vector<string> atributos = {"Forca", "Agilidade", "Inteligencia"};
-    vector<int> valores; // Vetor para armazenar os valores dos atributos
+    vector<string> atributos = {"Forca", "Agilidade", "Inteligencia"}; // Vetor com os nomes dos atributos
+    vector<int> valores;                                               // Vetor para armazenar os valores dos atributos
 
     cout << "Digite os valores dos atributos do personagem:\n"; // Exibe mensagem solicitando os valores dos atributos
     // Loop para solicitar os valores dos atributos
-    for (const string &atributo : atributos)
+    for (int i = 0; i < atributos.size(); ++i)
     {
-        int valor;                // Variável para armazenar o valor do atributo
-        cout << atributo << ": "; // Exibe o nome do atributo
-        cin >> valor;             // Recebe o valor do atributo do usuário
+        int valor;                    // Variável para armazenar o valor do atributo
+        cout << atributos[i] << ": "; // Exibe o nome do atributo
+        cin >> valor;                 // Recebe o valor do atributo do usuário
         while (cin.fail() || valor < 0)
-        {                                                      // Verifica se o valor é inválido
-            cin.clear();                                       // Limpa o estado de erro do cin
-            cin.ignore(std::numeric_limits<int>::max(), '\n'); // Ignora o restante da linha
-            cout << "Valor invalido. Digite novamente: ";      // Exibe mensagem de erro
-            cin >> valor;                                      // Solicita um novo valor
+        {                                                        // Verifica se o valor é inválido
+            cin.clear();                                         // Limpa o estado de erro do cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora o restante da linha
+            cout << "Valor invalido. Digite novamente: ";        // Exibe mensagem de erro
+            cin >> valor;                                        // Solicita um novo valor
         }
         valores.push_back(valor); // Adiciona o valor ao vetor de atributos
     }
@@ -78,34 +77,25 @@ void exibirFichaPersonagem(const string &nome, const string &classe, const vecto
     cout << "Classe: " << classe << endl; // Exibe a classe do personagem
     cout << "Atributos:\n";
     // Loop para exibir os atributos do personagem
-    cout << "  - Forca: " << atributos[0] << endl;        // Exibe o valor do atributo Força
-    cout << "  - Agilidade: " << atributos[1] << endl;    // Exibe o valor do atributo Agilidade
-    cout << "  - Inteligencia: " << atributos[2] << endl; // Exibe o valor do atributo Inteligência
+    for (int i = 0; i < atributos.size(); ++i)
+    {
+        cout << "  - " << atributos[i] << ": " << habilidades[i] << endl; // Exibe cada atributo com sua habilidade correspondente
+    }
     cout << "Habilidades:\n";
     // Loop para exibir as habilidades do personagem
-    for (const string &habilidade : habilidades)
+    for (int i = 0; i < habilidades.size(); ++i)
     {
-        cout << "  - " << habilidade << endl; // Exibe cada habilidade
+        cout << "  - " << habilidades[i] << endl; // Exibe cada habilidade
     }
 }
 
 // Função principal
 int main()
 {
-    // Exercício 1: Cadastro de Nome
-    string nome = cadastrarNome(); // Chama a função para cadastrar o nome do personagem
-
-    // Exercício 2: Cadastro de Classe
-    string classe = cadastrarClasse(); // Chama a função para cadastrar a classe do personagem
-
-    // Exercício 3: Cadastro de Atributos
-    vector<int> atributos = cadastrarAtributos(); // Chama a função para cadastrar os atributos do personagem
-
-    // Exercício 4: Cadastro de Habilidades
-    vector<string> habilidades = cadastrarHabilidades(); // Chama a função para cadastrar as habilidades do personagem
-
-    // Exercício 5: Exibir Ficha do Personagem
+    string nome = cadastrarNome();                               // Chama a função para cadastrar o nome do personagem
+    string classe = cadastrarClasse();                           // Chama a função para cadastrar a classe do personagem
+    vector<int> atributos = cadastrarAtributos();                // Chama a função para cadastrar os atributos do personagem
+    vector<string> habilidades = cadastrarHabilidades();         // Chama a função para cadastrar as habilidades do personagem
     exibirFichaPersonagem(nome, classe, atributos, habilidades); // Chama a função para exibir a ficha do personagem
-
-    return 0; // Retorna 0 indicando que o programa foi executado com sucesso
+    return 0;                                                    // Retorna 0 indicando que o programa foi executado com sucesso
 }
