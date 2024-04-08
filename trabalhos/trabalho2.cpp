@@ -65,9 +65,9 @@ int main()
     // Exibe o resultado do fatorial
     std::cout << "O Fatorial de " << totalElementos << " é: " << fatorialTotalElementos << std::endl;
     // Exibe o resultado do arranjo simples
-    std::cout << "O Arranjo Simples de " << totalElementos << " Elementos Escolhidos " << elementosEscolhidos << " é: " << arranjoSimples << std::endl;
+    std::cout << "O Arranjo Simples de " << totalElementos << " e o agrupamento " << elementosEscolhidos << " é: " << arranjoSimples << std::endl;
     // Exibe o resultado da combinação simples
-    std::cout << "A Combinação Simples de " << totalElementos << " Elementos Escolhidos " << subConjuntoDoTotalElementos << " é: " << combinacaoSimples << std::endl;
+    std::cout << "A Combinação Simples de " << totalElementos << " e subconjuntos " << subConjuntoDoTotalElementos << " é: " << combinacaoSimples << std::endl;
 
     return 0;
 }
