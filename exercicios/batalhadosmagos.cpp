@@ -15,9 +15,9 @@ int main() {
     transform(escolha.begin(), escolha.end(), escolha.begin(), ::tolower);
 
     // Verifica a escolha do usuário e exibe o resultado da batalha
-    if (escolha == "feitico de fogo") {
+    if (escolha == "fogo") {
         cout << "Voce lançou um feitiço de fogo! Resultado: derreteu o feitiço de gelo do oponente.\n";
-    } else if (escolha == "feitico de gelo") {
+    } else if (escolha == "gelo") {
         cout << "Voce lançou um feitiço de gelo! Resultado: congelou o feitiço de fogo do oponente.\n";
     } else {
         cout << "Opcao invalida! Escolha entre lancar um feitico de fogo ou de gelo.\n";
