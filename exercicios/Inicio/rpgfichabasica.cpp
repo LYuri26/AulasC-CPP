@@ -4,7 +4,7 @@
 
 using namespace std; // Permite o uso de elementos da biblioteca padrão (std) sem o prefixo "std::"
 
-// Exercício 1: Função para cadastrar o nome do personagem
+// Função para cadastrar o nome do personagem
 string cadastrarNomeDoPersonagem()
 {
     string nomeDoPersonagem; // Declara uma variável para armazenar o nome do personagem
@@ -14,7 +14,7 @@ string cadastrarNomeDoPersonagem()
     return nomeDoPersonagem; // Retorna o nome cadastrado
 }
 
-// Exercício 2: Função para cadastrar a classe do personagem
+// Função para cadastrar a classe do personagem
 string cadastrarClasseDoPersonagem()
 {
     string classeDoPersonagem; // Declara uma variável para armazenar a classe do personagem
@@ -50,7 +50,7 @@ string cadastrarClasseDoPersonagem()
     return classeDoPersonagem; // Retorna a classe cadastrada
 }
 
-// Exercício 3: Função para cadastrar os atributos do personagem
+// Função para cadastrar os atributos do personagem
 vector<int> cadastrarAtributosDoPersonagem()
 {
     // Cria um vetor com os nomes dos atributos
@@ -70,7 +70,7 @@ vector<int> cadastrarAtributosDoPersonagem()
     return valoresDosAtributos; // Retorna o vetor com os valores dos atributos cadastrados
 }
 
-// Exercício 4: Função para cadastrar as habilidades do personagem
+// Função para cadastrar as habilidades do personagem
 vector<string> cadastrarHabilidadesDoPersonagem()
 {
     vector<string> habilidadesDoPersonagem; // Declara um vetor para armazenar as habilidades do personagem
@@ -95,49 +95,42 @@ vector<string> cadastrarHabilidadesDoPersonagem()
     return habilidadesDoPersonagem; // Retorna o vetor com as habilidades cadastradas
 }
 
-// Exercício 5: Função para exibir a ficha completa do personagem
-void exibirFichaDoPersonagem(const string& nome, const string& classe, const vector<int>& atributos, const vector<string>& habilidades)
+// Função principal que coordena o cadastro e exibição do personagem
+int main()
 {
-    // Exibe a ficha completa do personagem
+    // Cadastra o nome do personagem chamando a função correspondente
+    string nomeDoPersonagem = cadastrarNomeDoPersonagem();
+
+    // Cadastra a classe do personagem chamando a função correspondente
+    string classeDoPersonagem = cadastrarClasseDoPersonagem();
+
+    // Cadastra os atributos do personagem chamando a função correspondente
+    vector<int> atributosDoPersonagem = cadastrarAtributosDoPersonagem();
+
+    // Cadastra as habilidades do personagem chamando a função correspondente
+    vector<string> habilidadesDoPersonagem = cadastrarHabilidadesDoPersonagem();
+
+    // Exibe a ficha completa do personagem diretamente no main
     cout << "\nFicha do Personagem:\n"; // Título da ficha do personagem
-    cout << "Nome: " << nome << endl; // Exibe o nome do personagem
-    cout << "Classe: " << classe << endl; // Exibe a classe do personagem
+    cout << "Nome: " << nomeDoPersonagem << endl; // Exibe o nome do personagem
+    cout << "Classe: " << classeDoPersonagem << endl; // Exibe a classe do personagem
 
     // Exibe os atributos do personagem
     cout << "Atributos:\n"; // Título da seção de atributos
     vector<string> nomesDosAtributos = {"Força", "Agilidade", "Inteligência"}; // Vetor com os nomes dos atributos
-    for (int i = 0; i < atributos.size(); i++) // Loop para iterar sobre os atributos do personagem
+    for (int i = 0; i < atributosDoPersonagem.size(); i++) // Loop para iterar sobre os atributos do personagem
     {
         // Exibe cada atributo com seu valor correspondente
-        cout << "  - " << nomesDosAtributos[i] << ": " << atributos[i] << endl;
+        cout << "  - " << nomesDosAtributos[i] << ": " << atributosDoPersonagem[i] << endl;
     }
 
     // Exibe as habilidades do personagem
     cout << "Habilidades:\n"; // Título da seção de habilidades
-    for (int i = 0; i < habilidades.size(); i++) // Loop para iterar sobre as habilidades do personagem
+    for (int i = 0; i < habilidadesDoPersonagem.size(); i++) // Loop para iterar sobre as habilidades do personagem
     {
         // Exibe cada habilidade
-        cout << "  - " << habilidades[i] << endl;
+        cout << "  - " << habilidadesDoPersonagem[i] << endl;
     }
-}
-
-// Função principal que coordena o cadastro e exibição do personagem
-int main()
-{
-    // Exercício 1: Cadastra o nome do personagem chamando a função correspondente
-    string nomeDoPersonagem = cadastrarNomeDoPersonagem();
-
-    // Exercício 2: Cadastra a classe do personagem chamando a função correspondente
-    string classeDoPersonagem = cadastrarClasseDoPersonagem();
-
-    // Exercício 3: Cadastra os atributos do personagem chamando a função correspondente
-    vector<int> atributosDoPersonagem = cadastrarAtributosDoPersonagem();
-
-    // Exercício 4: Cadastra as habilidades do personagem chamando a função correspondente
-    vector<string> habilidadesDoPersonagem = cadastrarHabilidadesDoPersonagem();
-
-    // Exercício 5: Exibe a ficha completa do personagem chamando a função correspondente
-    exibirFichaDoPersonagem(nomeDoPersonagem, classeDoPersonagem, atributosDoPersonagem, habilidadesDoPersonagem);
 
     return 0; // Retorna 0 indicando que o programa foi executado com sucesso
 }
