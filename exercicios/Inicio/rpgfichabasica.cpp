@@ -1,101 +1,150 @@
 #include <iostream> // Biblioteca para entrada e saída padrão
 #include <string>   // Biblioteca para manipulação de strings
 #include <vector>   // Biblioteca para utilização de vetores
-#include <limits>   // Biblioteca para utilizar numeric_limits
 
-using namespace std; // Permite o uso de elementos da biblioteca padrão (std) sem prefixo
+using namespace std; // Permite o uso de elementos da biblioteca padrão (std) sem o prefixo "std::"
 
 // Função para cadastrar o nome do personagem
-string cadastrarNome()
+string cadastrarNomeDoPersonagem()
 {
-    string nome;                             // Variável para armazenar o nome do personagem
-    cout << "Digite o nome do personagem: "; // Exibe mensagem solicitando o nome
-    getline(cin, nome);                      // Recebe o nome do usuário
-    return nome;                             // Retorna o nome cadastrado
+    string nomeDoPersonagem;                 // Declara uma variável para armazenar o nome do personagem
+    cout << "Digite o nome do personagem: "; // Solicita ao usuário que insira o nome do personagem
+    getline(cin, nomeDoPersonagem);          // Lê o nome completo do usuário, permitindo espaços
+    return nomeDoPersonagem;                 // Retorna o nome cadastrado
 }
 
 // Função para cadastrar a classe do personagem
-string cadastrarClasse()
+string cadastrarClasseDoPersonagem()
 {
-    string classe;                                                          // Variável para armazenar a classe do personagem
-    cout << "Escolha a classe do personagem (Guerreiro, Mago, Arqueiro): "; // Exibe opções de classe
-    getline(cin, classe);                                                   // Recebe a classe escolhida pelo usuário
-    return classe;                                                          // Retorna a classe cadastrada
+    string classeDoPersonagem; // Declara uma variável para armazenar a classe do personagem
+
+    // Cria um vetor com as opções de classes disponíveis
+    vector<string> opcoesDeClasse = {"Guerreiro", "Mago", "Arqueiro"};
+
+    // Exibe as opções de classe disponíveis
+    cout << "Escolha a classe do personagem:\n";
+    for (int i = 0; i < opcoesDeClasse.size(); i++) // Loop para iterar sobre as opções de classe
+    {
+        // Exibe a opção de classe com o número correspondente
+        cout << i + 1 << ". " << opcoesDeClasse[i] << endl;
+    }
+
+    int escolha;                                 // Declara uma variável para armazenar a escolha do usuário
+    cout << "Digite o número da classe escolhida (1-3): "; // Solicita que o usuário insira o número da classe escolhida
+    cin >> escolha;                              // Lê a escolha do usuário
+
+    // Valida a escolha do usuário para garantir que seja um número entre 1 e 3
+    while (escolha < 1 || escolha > 3)
+    {
+        // Se a escolha for inválida, solicita que o usuário insira novamente
+        cout << "Opção inválida. Escolha uma classe válida (1-3): ";
+        cin >> escolha;
+    }
+
+    // Define a classe do personagem baseada na escolha do usuário
+    classeDoPersonagem = opcoesDeClasse[escolha - 1];
+
+    cin.ignore(); // Limpa o buffer para evitar problemas com a próxima entrada do usuário
+    return classeDoPersonagem; // Retorna a classe cadastrada
 }
 
 // Função para cadastrar os atributos do personagem
-vector<int> cadastrarAtributos()
+vector<int> cadastrarAtributosDoPersonagem()
 {
-    vector<string> atributos = {"Forca", "Agilidade", "Inteligencia"}; // Vetor com os nomes dos atributos
-    vector<int> valores;                                               // Vetor para armazenar os valores dos atributos
+    // Cria um vetor com os nomes dos atributos
+    vector<string> nomesDosAtributos = {"Força", "Agilidade", "Inteligência"};
+    vector<int> valoresDosAtributos; // Declara um vetor para armazenar os valores dos atributos
 
-    cout << "Digite os valores dos atributos do personagem:\n"; // Exibe mensagem solicitando os valores dos atributos
-    // Loop para solicitar os valores dos atributos
-    for (int i = 0; i < atributos.size(); ++i)
+    // Define valores fixos para os atributos
+    vector<int> valoresFixos = {10, 5, 7}; // Exemplo de valores fixos para cada atributo
+
+    // Exibe os valores fixos dos atributos
+    cout << "Valores dos atributos do personagem (fixos):\n";
+    for (int i = 0; i < nomesDosAtributos.size(); i++) // Loop para iterar sobre os atributos
     {
-        int valor;                    // Variável para armazenar o valor do atributo
-        cout << atributos[i] << ": "; // Exibe o nome do atributo
-        cin >> valor;                 // Recebe o valor do atributo do usuário
-        while (cin.fail() || valor < 0)
-        {                                                        // Verifica se o valor é inválido
-            cin.clear();                                         // Limpa o estado de erro do cin
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora o restante da linha
-            cout << "Valor invalido. Digite novamente: ";        // Exibe mensagem de erro
-            cin >> valor;                                        // Solicita um novo valor
-        }
-        valores.push_back(valor); // Adiciona o valor ao vetor de atributos
+        // Adiciona o valor fixo ao vetor de valores dos atributos
+        valoresDosAtributos.push_back(valoresFixos[i]);
+        // Exibe o nome do atributo e seu valor fixo
+        cout << nomesDosAtributos[i] << ": " << valoresFixos[i] << endl;
     }
 
-    return valores; // Retorna os valores dos atributos cadastrados
+    return valoresDosAtributos; // Retorna o vetor com os valores dos atributos cadastrados
 }
 
 // Função para cadastrar as habilidades do personagem
-vector<string> cadastrarHabilidades()
+vector<string> cadastrarHabilidadesDoPersonagem()
 {
-    vector<string> habilidades; // Vetor para armazenar as habilidades
-    string habilidade;          // Variável para armazenar cada habilidade digitada pelo usuário
-    char continuar;             // Variável para verificar se o usuário deseja continuar adicionando habilidades
+    vector<string> habilidadesDoPersonagem; // Declara um vetor para armazenar as habilidades do personagem
 
-    do
+    // Cria um vetor com as habilidades fixas disponíveis
+    vector<string> habilidadesFixas = {"Ataque Rápido", "Defesa Mágica", "Tiro Preciso", "Curar", "Furtividade"};
+
+    // Exibe as habilidades disponíveis e solicita que o usuário escolha duas
+    cout << "Escolha duas habilidades do personagem:\n";
+    for (int i = 0; i < habilidadesFixas.size(); i++) // Loop para iterar sobre as habilidades disponíveis
     {
-        cout << "Digite uma habilidade do personagem: "; // Exibe mensagem solicitando uma habilidade
-        getline(cin >> ws, habilidade);                  // Recebe uma habilidade do usuário
-        habilidades.push_back(habilidade);               // Adiciona a habilidade ao vetor de habilidades
+        // Exibe a habilidade com o número correspondente
+        cout << i + 1 << ". " << habilidadesFixas[i] << endl;
+    }
 
-        cout << "Deseja adicionar outra habilidade? (S/N): "; // Pergunta se deseja adicionar mais habilidades
-        cin >> continuar;                                     // Recebe a resposta do usuário
-    } while (continuar == 'S' || continuar == 's'); // Continua enquanto a resposta for 'S' ou 's'
+    int escolha1, escolha2; // Declara variáveis para armazenar as escolhas do usuário
+    cout << "Digite o número da primeira habilidade escolhida (1-5): "; // Solicita a primeira escolha
+    cin >> escolha1; // Lê a primeira escolha do usuário
+    cout << "Digite o número da segunda habilidade escolhida (1-5): "; // Solicita a segunda escolha
+    cin >> escolha2; // Lê a segunda escolha do usuário
 
-    return habilidades; // Retorna as habilidades cadastradas
+    // Valida as escolhas do usuário para garantir que sejam válidas e diferentes entre si
+    while (escolha1 < 1 || escolha1 > 5 || escolha2 < 1 || escolha2 > 5 || escolha1 == escolha2)
+    {
+        // Se as escolhas forem inválidas, solicita que o usuário insira novamente
+        cout << "Escolhas inválidas. Escolha duas habilidades diferentes entre 1 e 5: ";
+        cin >> escolha1 >> escolha2;
+    }
+
+    // Adiciona as habilidades escolhidas ao vetor de habilidades do personagem
+    habilidadesDoPersonagem.push_back(habilidadesFixas[escolha1 - 1]);
+    habilidadesDoPersonagem.push_back(habilidadesFixas[escolha2 - 1]);
+
+    cin.ignore(); // Limpa o buffer para evitar problemas com a próxima entrada do usuário
+    return habilidadesDoPersonagem; // Retorna o vetor com as habilidades cadastradas
 }
 
-// Função para exibir a ficha do personagem
-void exibirFichaPersonagem(const string &nome, const string &classe, const vector<int> &atributos, const vector<string> &habilidades)
-{
-    cout << "\nFicha do Personagem:\n";   // Exibe cabeçalho da ficha do personagem
-    cout << "Nome: " << nome << endl;     // Exibe o nome do personagem
-    cout << "Classe: " << classe << endl; // Exibe a classe do personagem
-    cout << "Atributos:\n";
-    // Loop para exibir os atributos do personagem
-    for (int i = 0; i < atributos.size(); ++i)
-    {
-        cout << "  - " << atributos[i] << ": " << habilidades[i] << endl; // Exibe cada atributo com sua habilidade correspondente
-    }
-    cout << "Habilidades:\n";
-    // Loop para exibir as habilidades do personagem
-    for (int i = 0; i < habilidades.size(); ++i)
-    {
-        cout << "  - " << habilidades[i] << endl; // Exibe cada habilidade
-    }
-}
-
-// Função principal
+// Função principal que coordena o cadastro e exibição do personagem
 int main()
 {
-    string nome = cadastrarNome();                               // Chama a função para cadastrar o nome do personagem
-    string classe = cadastrarClasse();                           // Chama a função para cadastrar a classe do personagem
-    vector<int> atributos = cadastrarAtributos();                // Chama a função para cadastrar os atributos do personagem
-    vector<string> habilidades = cadastrarHabilidades();         // Chama a função para cadastrar as habilidades do personagem
-    exibirFichaPersonagem(nome, classe, atributos, habilidades); // Chama a função para exibir a ficha do personagem
-    return 0;                                                    // Retorna 0 indicando que o programa foi executado com sucesso
+    // Cadastra o nome do personagem chamando a função correspondente
+    string nomeDoPersonagem = cadastrarNomeDoPersonagem();
+
+    // Cadastra a classe do personagem chamando a função correspondente
+    string classeDoPersonagem = cadastrarClasseDoPersonagem();
+
+    // Cadastra os atributos do personagem chamando a função correspondente
+    vector<int> atributosDoPersonagem = cadastrarAtributosDoPersonagem();
+
+    // Cadastra as habilidades do personagem chamando a função correspondente
+    vector<string> habilidadesDoPersonagem = cadastrarHabilidadesDoPersonagem();
+
+    // Exibe a ficha completa do personagem
+    cout << "\nFicha do Personagem:\n"; // Título da ficha do personagem
+    cout << "Nome: " << nomeDoPersonagem << endl; // Exibe o nome do personagem
+    cout << "Classe: " << classeDoPersonagem << endl; // Exibe a classe do personagem
+
+    // Exibe os atributos do personagem
+    cout << "Atributos:\n"; // Título da seção de atributos
+    vector<string> nomesDosAtributos = {"Força", "Agilidade", "Inteligência"}; // Vetor com os nomes dos atributos
+    for (int i = 0; i < atributosDoPersonagem.size(); i++) // Loop para iterar sobre os atributos do personagem
+    {
+        // Exibe cada atributo com seu valor correspondente
+        cout << "  - " << nomesDosAtributos[i] << ": " << atributosDoPersonagem[i] << endl;
+    }
+
+    // Exibe as habilidades do personagem
+    cout << "Habilidades:\n"; // Título da seção de habilidades
+    for (int i = 0; i < habilidadesDoPersonagem.size(); i++) // Loop para iterar sobre as habilidades do personagem
+    {
+        // Exibe cada habilidade
+        cout << "  - " << habilidadesDoPersonagem[i] << endl;
+    }
+
+    return 0; // Retorna 0 indicando que o programa foi executado com sucesso
 }
