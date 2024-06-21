@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/exercicios/Lista 12",
-      "program": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/exercicios/Lista 12/build/Debug/outDebug",
+      "cwd": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP",
+      "program": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
