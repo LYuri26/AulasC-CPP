@@ -20,27 +20,32 @@ int main()
     cin >> num2; // Lê o segundo número fornecido pelo usuário
 
     // Executa a operação de acordo com a escolha do usuário e exibe o resultado
-    switch (operacao)
+    if (operacao == '+')
     {
-    case '+':
         resultado = num1 + num2; // Soma os dois números
-        break;
-    case '-':
+    }
+    else if (operacao == '-')
+    {
         resultado = num1 - num2; // Subtrai o segundo número do primeiro
-        break;
-    case '*':
+    }
+    else if (operacao == '*')
+    {
         resultado = num1 * num2; // Multiplica os dois números
-        break;
-    case '/':
+    }
+    else if (operacao == '/')
+    {
         if (num2 != 0)
+        {
             resultado = num1 / num2; // Divide o primeiro número pelo segundo, se o segundo número não for zero
+        }
         else
         {
             cout << "Erro: Divisao por zero!\n"; // Se o segundo número for zero, exibe uma mensagem de erro
             return 1;                            // Retorna 1 para indicar que houve um erro
         }
-        break;
-    default:
+    }
+    else
+    {
         cout << "Operacao invalida!\n"; // Se a operação fornecida pelo usuário for inválida, exibe uma mensagem de erro
         return 1;                       // Retorna 1 para indicar que houve um erro
     }
