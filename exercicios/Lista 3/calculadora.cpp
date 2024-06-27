@@ -11,9 +11,9 @@ int main()
     cout << "Digite o primeiro numero: ";
     cin >> num1; // Lê o primeiro número fornecido pelo usuário
 
-    // Solicita ao usuário que insira a operação desejada
-    cout << "Digite a operacao (+, -, *, /): ";
-    cin >> operacao; // Lê a operação fornecida pelo usuário
+    cout << "Digite a operação: ";
+    cin >> operacao; // Lê o primeiro número fornecido pelo usuário
+
 
     // Solicita ao usuário que insira o segundo número
     cout << "Digite o segundo numero: ";
