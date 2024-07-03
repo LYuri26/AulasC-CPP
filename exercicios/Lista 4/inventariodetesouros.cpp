@@ -1,70 +1,19 @@
 #include <iostream>
-#include <vector>
+#include <string>
 
 using namespace std;
 
-// Função para adicionar um novo tesouro ao inventário
-vector<string> adicionar_tesouro(vector<string> nomes_tesouros, const string nome_tesouro)
-{
-    // Adiciona o novo nome do tesouro ao vetor de nomes de tesouros
-    nomes_tesouros.push_back(nome_tesouro);
-    // Retorna o vetor atualizado contendo os nomes dos tesouros
-    return nomes_tesouros;
-}
-
-// Função para adicionar um novo valor ao inventário
-vector<int> adicionar_valor(vector<int> valores_tesouros, int valor_tesouro)
-{
-    // Adiciona o novo valor do tesouro ao vetor de valores dos tesouros
-    valores_tesouros.push_back(valor_tesouro);
-    // Retorna o vetor atualizado contendo os valores dos tesouros
-    return valores_tesouros;
-}
-
-// Função para remover um tesouro do inventário pela posição
-pair<vector<string>, vector<int>> remover_tesouro_por_posicao(vector<string> nomes_tesouros, vector<int> valores_tesouros, int posicao)
-{
-    // Verifica se a posição fornecida é válida (dentro dos limites do vetor de nomes de tesouros)
-    if (posicao < nomes_tesouros.size())
-    {
-        // Remove o nome do tesouro e o valor correspondente nas posições fornecidas dos vetores
-        nomes_tesouros.erase(nomes_tesouros.begin() + static_cast<int>(posicao));
-        valores_tesouros.erase(valores_tesouros.begin() + static_cast<int>(posicao));
-        // Imprime uma mensagem indicando que o tesouro foi removido com sucesso
-        cout << "Tesouro removido do inventário!\n";
-    }
-    else
-    {
-        // Se a posição fornecida for inválida, imprime uma mensagem de erro
-        cout << "Posição inválida!\n";
-    }
-
-    // Retorna um par contendo os vetores atualizados de nomes e valores dos tesouros
-    return make_pair(nomes_tesouros, valores_tesouros);
-}
-
-// Função para listar todos os tesouros no inventário
-void listar_tesouros(const vector<string> &nomes_tesouros, const vector<int> &valores_tesouros)
-{
-    // Imprime um cabeçalho indicando a lista de tesouros
-    cout << "\nLista de Tesouros:\n";
-    // Itera sobre os vetores de nomes e valores dos tesouros
-    for (int i = 0; i < nomes_tesouros.size(); ++i)
-    {
-        // Imprime o índice, nome e valor do tesouro
-        cout << i + 1 << ". " << nomes_tesouros[i] << " - Valor: R$ " << valores_tesouros[i] << endl;
-    }
-}
+const int MAX_TESOUROS = 100; // Definindo o número máximo de tesouros
 
 int main()
 {
-    vector<string> nomes_tesouros; // Vetor para armazenar os nomes dos tesouros
-    vector<int> valores_tesouros;  // Vetor para armazenar os valores dos tesouros
+    string nomes_tesouros[MAX_TESOUROS]; // Array para armazenar os nomes dos tesouros
+    int valores_tesouros[MAX_TESOUROS];  // Array para armazenar os valores dos tesouros
 
-    int opcao, valor;                         // Variáveis para armazenar a opção e o valor
-    string nome_tesouro;                      // Variável para armazenar o nome do tesouro
-    int posicao;                           // Variável para armazenar a posição do tesouro a ser removido
-    pair<vector<string>, vector<int>> result; // Variável para armazenar o resultado da remoção
+    int opcao, valor;           // Variáveis para armazenar a opção e o valor
+    string nome_tesouro;        // Variável para armazenar o nome do tesouro
+    int posicao;                // Variável para armazenar a posição do tesouro a ser removido
+    int tamanho_inventario = 0; // Variável para controlar o tamanho atual do inventário
 
     // Loop principal do programa
     do
@@ -81,41 +30,100 @@ int main()
         // Verifica a opção escolhida pelo usuário
         switch (opcao)
         {
-        case 1: // Se a opção for 1
-            // Solicita ao usuário para digitar o nome do novo tesouro
-            cout << "Digite o nome do novo tesouro: ";
-            // Lê o nome do novo tesouro fornecido pelo usuário
-            cin >> nome_tesouro;
-            // Chama a função para adicionar o nome do tesouro ao inventário
-            nomes_tesouros = adicionar_tesouro(nomes_tesouros, nome_tesouro);
-            // Solicita ao usuário para digitar o valor do novo tesouro
-            cout << "Digite o valor do tesouro: ";
-            // Lê o valor do novo tesouro fornecido pelo usuário
-            cin >> valor;
-            // Chama a função para adicionar o valor do tesouro ao inventário
-            valores_tesouros = adicionar_valor(valores_tesouros, valor);
-            // Imprime uma mensagem indicando que o tesouro foi adicionado com sucesso
-            cout << "Tesouro adicionado com sucesso!\n";
+        case 1: // Se a opção for 1 (Adicionar novo tesouro)
+            // Verifica se ainda há espaço no inventário
+            if (tamanho_inventario < MAX_TESOUROS)
+            {
+                // Solicita ao usuário para digitar o nome do novo tesouro
+                cout << "Digite o nome do novo tesouro: ";
+                // Lê o nome do novo tesouro fornecido pelo usuário
+                cin >> nome_tesouro;
+                // Adiciona o nome do tesouro ao inventário
+                nomes_tesouros[tamanho_inventario] = nome_tesouro;
+
+                // Solicita ao usuário para digitar o valor do novo tesouro
+                cout << "Digite o valor do tesouro: ";
+                // Lê o valor do novo tesouro fornecido pelo usuário
+                cin >> valor;
+                // Adiciona o valor do tesouro ao inventário
+                valores_tesouros[tamanho_inventario] = valor;
+
+                // Incrementa o tamanho do inventário
+                tamanho_inventario++;
+
+                // Imprime uma mensagem indicando que o tesouro foi adicionado com sucesso
+                cout << "Tesouro adicionado com sucesso!\n";
+            }
+            else
+            {
+                // Informa ao usuário que o inventário está cheio
+                cout << "Inventário cheio! Não é possível adicionar mais tesouros.\n";
+            }
             break; // Sai do switch
-        case 2:    // Se a opção for 2
-            // Solicita ao usuário para digitar a posição do tesouro a ser removido
-            cout << "Digite a posição do tesouro a ser removido: ";
-            // Lê a posição do tesouro a ser removido fornecida pelo usuário
-            cin >> posicao;
-            // Chama a função para remover o tesouro do inventário pela posição
-            result = remover_tesouro_por_posicao(nomes_tesouros, valores_tesouros, posicao - 1);
-            nomes_tesouros = result.first;
-            valores_tesouros = result.second;
+
+        case 2: // Se a opção for 2 (Remover tesouro por posição)
+            // Verifica se há tesouros no inventário para remover
+            if (tamanho_inventario > 0)
+            {
+                // Solicita ao usuário para digitar a posição do tesouro a ser removido
+                cout << "Digite a posição do tesouro a ser removido (1-" << tamanho_inventario << "): ";
+                // Lê a posição do tesouro a ser removido fornecida pelo usuário
+                cin >> posicao;
+
+                // Verifica se a posição fornecida é válida
+                if (posicao >= 1 && posicao <= tamanho_inventario)
+                {
+                    // Move todos os tesouros à frente da posição para trás
+                    for (int i = posicao - 1; i < tamanho_inventario - 1; ++i)
+                    {
+                        nomes_tesouros[i] = nomes_tesouros[i + 1];
+                        valores_tesouros[i] = valores_tesouros[i + 1];
+                    }
+
+                    // Decrementa o tamanho do inventário
+                    tamanho_inventario--;
+
+                    // Imprime uma mensagem indicando que o tesouro foi removido com sucesso
+                    cout << "Tesouro removido do inventário!\n";
+                }
+                else
+                {
+                    // Informa ao usuário que a posição fornecida é inválida
+                    cout << "Posição inválida!\n";
+                }
+            }
+            else
+            {
+                // Informa ao usuário que o inventário está vazio
+                cout << "Inventário vazio! Não há tesouros para remover.\n";
+            }
             break; // Sai do switch
-        case 3:    // Se a opção for 3
-            // Chama a função para listar todos os tesouros no inventário
-            listar_tesouros(nomes_tesouros, valores_tesouros);
+
+        case 3: // Se a opção for 3 (Listar tesouros)
+            // Verifica se há tesouros no inventário para listar
+            if (tamanho_inventario > 0)
+            {
+                // Imprime um cabeçalho indicando a lista de tesouros
+                cout << "\nLista de Tesouros:\n";
+                // Itera sobre os tesouros no inventário e os imprime
+                for (int i = 0; i < tamanho_inventario; ++i)
+                {
+                    cout << i + 1 << ". " << nomes_tesouros[i] << " - Valor: R$ " << valores_tesouros[i] << endl;
+                }
+            }
+            else
+            {
+                // Informa ao usuário que o inventário está vazio
+                cout << "Inventário vazio! Não há tesouros para listar.\n";
+            }
             break; // Sai do switch
-        case 4:    // Se a opção for 4
+
+        case 4: // Se a opção for 4 (Sair do programa)
             // Imprime uma mensagem indicando o encerramento do programa
             cout << "Encerrando o programa...\n";
             break; // Sai do switch
-        default:   // Se a opção não for nenhuma das anteriores
+
+        default: // Se a opção não for nenhuma das anteriores
             // Imprime uma mensagem indicando que a opção é inválida
             cout << "Opcao invalida!\n";
         }

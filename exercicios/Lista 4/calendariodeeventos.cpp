@@ -1,65 +1,50 @@
-#include <iostream> // inclui a biblioteca para entrada e saída padrão
-#include <vector>   // inclui a biblioteca para utilizar vetores
-#include <string>   // inclui a biblioteca para utilizar strings
+#include <iostream> // Biblioteca para entrada e saída padrão
 
-using namespace std; // utiliza o namespace std para evitar repetição de std::
-
-// função para adicionar um novo evento ao mês especificado
-void adicionar_evento(vector<vector<string>> &calendario, int mes, string novo_evento)
-{
-    calendario[mes - 1].push_back(novo_evento); // adiciona o evento ao vetor de eventos do mês correspondente
-    cout << "Evento adicionado com sucesso!\n"; // mensagem de sucesso ao adicionar o evento
-}
-
-// função para exibir os eventos do mês especificado
-void exibir_eventos_mes(const vector<vector<string>> &calendario, int mes)
-{
-    cout << "Eventos do mês " << mes << ":\n"; // imprime o cabeçalho com o número do mês
-    for (const string &evento : calendario[mes - 1])
-    {                                   // loop para percorrer todos os eventos do mês
-        cout << "- " << evento << endl; // imprime cada evento do mês
-    }
-}
+using namespace std; // Utiliza o namespace std para evitar repetição de std::
 
 int main()
 {
-    const int num_meses = 12;                     // constante para representar o número de meses em um ano
-    vector<vector<string>> calendario(num_meses); // vetor de vetores de string para armazenar os eventos de cada mês
-
-    int opcao, mes;     // variáveis para armazenar a opção do usuário e o número do mês
-    string novo_evento; // string para armazenar o nome do novo evento
+    const int num_meses = 12;                                 // Constante para representar o número de meses em um ano
+    const int tamanho_maximo_evento = 100;                    // Tamanho máximo para um evento (considerando espaço extra para segurança)
+    char calendario[num_meses][tamanho_maximo_evento] = {""}; // Array de caracteres para armazenar os eventos de cada mês
+    int opcao, mes;                                           // Variáveis para armazenar a opção do usuário e o número do mês
+    char novo_evento[tamanho_maximo_evento];                  // Array de caracteres para armazenar o nome do novo evento
 
     do
     {
-        cout << "\nMenu:\n";                     // imprime o menu de opções
-        cout << "1. Adicionar novo evento\n";    // opção para adicionar um novo evento
-        cout << "2. Exibir eventos de um mês\n"; // opção para exibir os eventos de um mês
-        cout << "3. Sair\n";                     // opção para sair do programa
-        cout << "Escolha uma opção: ";           // solicita ao usuário que escolha uma opção
-        cin >> opcao;                            // lê a opção escolhida pelo usuário
+        cout << "\nMenu:\n";                     // Imprime o menu de opções
+        cout << "1. Adicionar novo evento\n";    // Opção para adicionar um novo evento
+        cout << "2. Exibir eventos de um mês\n"; // Opção para exibir os eventos de um mês
+        cout << "3. Sair\n";                     // Opção para sair do programa
+        cout << "Escolha uma opção: ";           // Solicita ao usuário que escolha uma opção
+        cin >> opcao;                            // Lê a opção escolhida pelo usuário
 
         switch (opcao)
-        { // switch para tratar a opção escolhida pelo usuário
+        { // Switch para tratar a opção escolhida pelo usuário
         case 1:
-            cout << "Digite o mês (1 a 12): ";              // solicita ao usuário que digite o número do mês
-            cin >> mes;                                     // lê o número do mês
-            cout << "Digite o nome do novo evento: ";       // solicita ao usuário que digite o nome do evento
-            cin.ignore();                                   // limpa o buffer de entrada
-            getline(cin, novo_evento);                      // lê o nome do novo evento
-            adicionar_evento(calendario, mes, novo_evento); // chama a função para adicionar o evento ao mês correspondente
+            cout << "Digite o mês (1 a 12): ";               // Solicita ao usuário que digite o número do mês
+            cin >> mes;                                      // Lê o número do mês
+            cout << "Digite o nome do novo evento: ";        // Solicita ao usuário que digite o nome do evento
+            cin.ignore();                                    // Limpa o buffer de entrada
+            cin.getline(novo_evento, tamanho_maximo_evento); // Lê o nome do novo evento
+            if (calendario[mes - 1][0] != '\0')
+                cout << endl;
+            cout << novo_evento;                             // Adiciona o evento ao mês correspondente
+            cout << "Evento adicionado com sucesso!\n";      // Mensagem de sucesso ao adicionar o evento
             break;
         case 2:
-            cout << "Digite o mês (1 a 12): ";   // solicita ao usuário que digite o número do mês
-            cin >> mes;                          // lê o número do mês
-            exibir_eventos_mes(calendario, mes); // chama a função para exibir os eventos do mês especificado
+            cout << "Digite o mês (1 a 12): "; // Solicita ao usuário que digite o número do mês
+            cin >> mes;                        // Lê o número do mês
+            cout << "Eventos do mês " << mes << ":\n"
+                 << calendario[mes - 1] << endl; // Exibe os eventos do mês especificado
             break;
         case 3:
-            cout << "Encerrando o programa...\n"; // mensagem de encerramento do programa
+            cout << "Encerrando o programa...\n"; // Mensagem de encerramento do programa
             break;
         default:
-            cout << "Opção inválida!\n"; // mensagem de opção inválida caso o usuário escolha uma opção inválida
+            cout << "Opção inválida!\n"; // Mensagem de opção inválida caso o usuário escolha uma opção inválida
         }
-    } while (opcao != 3); // repete o loop até que o usuário escolha a opção de sair do programa
+    } while (opcao != 3); // Repete o loop até que o usuário escolha a opção de sair do programa
 
-    return 0; // retorna 0 para indicar que o programa foi encerrado com sucesso
+    return 0; // Retorna 0 para indicar que o programa foi encerrado com sucesso
 }

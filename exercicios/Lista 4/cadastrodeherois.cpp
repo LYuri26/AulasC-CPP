@@ -1,48 +1,56 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
-// Função para adicionar um novo herói ao vetor
-void adicionar_heroi(vector<string>& herois, string novo_heroi) {
-    herois.push_back(novo_heroi); // Adiciona o novo herói ao final do vetor
-    cout << "Novo heroi adicionado com sucesso!\n"; // Exibe uma mensagem de sucesso
-}
+int main()
+{
+    const int MAX_HEROIS = 100; // Tamanho máximo para o array de heróis
+    string herois[MAX_HEROIS];  // Array para armazenar os heróis
+    char opcao;                 // Variável para armazenar a opção do usuário
+    int num_herois = 0;         // Contador para controlar o número de heróis cadastrados
 
-// Função para listar todos os heróis cadastrados
-void listar_herois(const vector<string>& herois) {
-    cout << "Lista de Heróis Cadastrados:\n"; // Exibe o cabeçalho da lista
-    for (int i = 0; i < herois.size(); ++i) { // Loop para percorrer o vetor de heróis
-        cout << "- " << herois[i] << endl; // Exibe cada herói da lista
-    }
-}
-
-int main() {
-    vector<string> herois; // Declara um vetor para armazenar os heróis
-    char opcao; // Variável para armazenar a opção do usuário
-    string novo_heroi; // Variável para armazenar o novo herói
-
-    do {
-        cout << "\nMenu:\n"; // Exibe o menu de opções
-        cout << "1. Adicionar novo heroi\n"; // Opção para adicionar um novo herói
+    do
+    {
+        cout << "\nMenu:\n";                      // Exibe o menu de opções
+        cout << "1. Adicionar novo heroi\n";      // Opção para adicionar um novo herói
         cout << "2. Listar herois cadastrados\n"; // Opção para listar os heróis cadastrados
-        cout << "3. Sair\n"; // Opção para sair do programa
-        cout << "Escolha uma opcao: "; // Solicita ao usuário que escolha uma opção
-        cin >> opcao; // Lê a opção escolhida pelo usuário
+        cout << "3. Sair\n";                      // Opção para sair do programa
+        cout << "Escolha uma opcao: ";            // Solicita ao usuário que escolha uma opção
+        cin >> opcao;                             // Lê a opção escolhida pelo usuário
 
-        switch (opcao) { // Switch para tratar a opção escolhida pelo usuário
-            case '1':
-                cout << "Digite o nome do novo heroi: "; // Solicita ao usuário que digite o nome do novo herói
-                cin >> novo_heroi; // Lê o nome do novo herói
-                adicionar_heroi(herois, novo_heroi); // Chama a função para adicionar o novo herói ao vetor
-                break;
-            case '2':
-                listar_herois(herois); // Chama a função para listar os heróis cadastrados
-                break;
-            case '3':
-                cout << "Encerrando o programa...\n"; // Mensagem de encerramento do programa
-                break;
-            default:
-                cout << "Opcao invalida!\n"; // Mensagem de opção inválida caso o usuário escolha uma opção inválida
+        switch (opcao)
+        { // Switch para tratar a opção escolhida pelo usuário
+        case '1':
+            if (num_herois < MAX_HEROIS)
+            {                                                   // Verifica se há espaço disponível para adicionar um novo herói
+                cout << "Digite o nome do novo heroi: ";        // Solicita ao usuário que digite o nome do novo herói
+                cin >> herois[num_herois];                      // Lê o nome do novo herói e armazena no array
+                cout << "Novo heroi adicionado com sucesso!\n"; // Exibe uma mensagem de sucesso
+                num_herois++;                                   // Incrementa o contador de heróis cadastrados
+            }
+            else
+            {
+                cout << "Limite de heróis cadastrados atingido!\n"; // Mensagem de erro se o limite de heróis for atingido
+            }
+            break;
+        case '2':
+            if (num_herois > 0)
+            {                                             // Verifica se há heróis cadastrados para listar
+                cout << "Lista de Heróis Cadastrados:\n"; // Exibe o cabeçalho da lista
+                for (int i = 0; i < num_herois; ++i)
+                {                                      // Loop para percorrer o array de heróis
+                    cout << "- " << herois[i] << endl; // Exibe cada herói da lista
+                }
+            }
+            else
+            {
+                cout << "Nenhum heroi cadastrado.\n"; // Mensagem se não houver heróis cadastrados
+            }
+            break;
+        case '3':
+            cout << "Encerrando o programa...\n"; // Mensagem de encerramento do programa
+            break;
+        default:
+            cout << "Opcao invalida!\n"; // Mensagem de opção inválida caso o usuário escolha uma opção inválida
         }
     } while (opcao != '3'); // Repete o loop até que o usuário escolha a opção de sair do programa
 

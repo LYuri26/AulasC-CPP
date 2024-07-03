@@ -1,37 +1,14 @@
 #include <iostream>
-#include <vector>
 using namespace std;
-
-// Função para aplicar o desconto ao preço do jogo selecionado
-void aplicar_desconto(vector<double> &precos_jogos, int opcao_jogo)
-{
-    // Verifica se a opção do jogo é válida
-    if (opcao_jogo >= 1 && static_cast<int>(opcao_jogo) <= precos_jogos.size())
-    {
-        // Solicita ao usuário o desconto a ser aplicado
-        double desconto;
-        cout << "Digite o desconto a ser aplicado (em porcentagem): ";
-        cin >> desconto;
-        // Aplica o desconto ao preço do jogo selecionado
-        precos_jogos[opcao_jogo - 1] *= (1 - desconto / 100);
-        // Informa ao usuário que o desconto foi aplicado com sucesso
-        cout << "Desconto aplicado com sucesso!\n";
-    }
-    else
-    {
-        // Informa ao usuário que a opção escolhida é inválida
-        cout << "Opcao invalida!\n";
-    }
-}
 
 int main()
 {
-    // Vetor de preços dos jogos
-    vector<double> precos_jogos = {59.99, 49.99, 39.99};
-    // Vetor de nomes dos jogos
-    vector<string> nomes_jogos = {"Jogo A", "Jogo B", "Jogo C"};
+    // Arrays para armazenar os preços e nomes dos jogos
+    double precos_jogos[] = {59.99, 49.99, 39.99};
+    const int num_jogos = 3; // Número de jogos
+    const char *nomes_jogos[] = {"Jogo A", "Jogo B", "Jogo C"};
 
-    // Variável para armazenar a opção do usuário
+    // Variáveis para armazenar a opção do usuário
     int opcao;
 
     // Loop principal do programa
@@ -51,20 +28,35 @@ int main()
         case 1:
             // Exibe a lista de jogos e preços
             cout << "Escolha o jogo:\n";
-            for (int i = 0; i < precos_jogos.size(); ++i)
+            for (int i = 0; i < num_jogos; ++i)
             {
                 cout << i + 1 << ". " << nomes_jogos[i] << " - R$ " << precos_jogos[i] << endl;
             }
             // Solicita ao usuário que escolha o jogo
             cout << "Digite o número correspondente ao jogo: ";
             cin >> opcao;
-            // Aplica desconto ao jogo escolhido
-            aplicar_desconto(precos_jogos, opcao);
+            // Verifica se a opção do jogo é válida
+            if (opcao >= 1 && opcao <= num_jogos)
+            {
+                // Solicita ao usuário o desconto a ser aplicado
+                double desconto;
+                cout << "Digite o desconto a ser aplicado (em porcentagem): ";
+                cin >> desconto;
+                // Aplica o desconto ao preço do jogo selecionado
+                precos_jogos[opcao - 1] *= (1 - desconto / 100);
+                // Informa ao usuário que o desconto foi aplicado com sucesso
+                cout << "Desconto aplicado com sucesso!\n";
+            }
+            else
+            {
+                // Informa ao usuário que a opção escolhida é inválida
+                cout << "Opcao invalida!\n";
+            }
             break;
         case 2:
             // Lista os jogos e seus preços
             cout << "Lista de jogos e preços:\n";
-            for (int i = 0; i < precos_jogos.size(); ++i)
+            for (int i = 0; i < num_jogos; ++i)
             {
                 cout << nomes_jogos[i] << " - R$ " << precos_jogos[i] << endl;
             }

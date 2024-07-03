@@ -1,11 +1,14 @@
 #include <iostream>
-#include <vector>
+#include <string>
 
 using namespace std;
 
+const int MAX_MUSICAS = 100; // Tamanho máximo da playlist
+
 int main()
 {
-    vector<string> playlist; // Declaração da playlist
+    string playlist[MAX_MUSICAS]; // Array para armazenar as músicas da playlist
+    int total_musicas = 0;        // Contador para controlar o número de músicas na playlist
 
     char opcao; // Variável para armazenar a opção do usuário
 
@@ -27,11 +30,19 @@ int main()
         {
         case '1': // Opção para adicionar nova música
         {
-            string nova_musica; // Variável para armazenar o nome da nova música
-            cout << "Digite o nome da nova música: ";
-            cin >> nova_musica;                              // Lê o nome da nova música fornecido pelo usuário
-            playlist.push_back(nova_musica);                 // Adiciona a nova música à playlist
-            cout << "Nova música adicionada com sucesso!\n"; // Informa ao usuário que a música foi adicionada
+            if (total_musicas < MAX_MUSICAS)
+            {
+                string nova_musica; // Variável para armazenar o nome da nova música
+                cout << "Digite o nome da nova música: ";
+                cin >> nova_musica;                              // Lê o nome da nova música fornecido pelo usuário
+                playlist[total_musicas] = nova_musica;           // Adiciona a nova música à playlist
+                total_musicas++;                                 // Incrementa o contador de músicas
+                cout << "Nova música adicionada com sucesso!\n"; // Informa ao usuário que a música foi adicionada
+            }
+            else
+            {
+                cout << "Playlist cheia! Não é possível adicionar mais músicas.\n";
+            }
         }
         break;
         case '2': // Opção para remover música
@@ -39,11 +50,17 @@ int main()
             int posicao; // Variável para armazenar a posição da música a ser removida
             cout << "Digite a posição da música a ser removida: ";
             cin >> posicao; // Lê a posição fornecida pelo usuário
+
             // Verifica se a posição é válida e remove a música correspondente
-            if (posicao >= 1 && posicao <= playlist.size())
+            if (posicao >= 1 && posicao <= total_musicas)
             {
-                playlist.erase(playlist.begin() + posicao - 1); // Remove a música pela posição
-                cout << "Música removida com sucesso!\n";       // Informa ao usuário que a música foi removida
+                // Movendo as músicas para preencher o espaço da música removida
+                for (int i = posicao - 1; i < total_musicas - 1; ++i)
+                {
+                    playlist[i] = playlist[i + 1];
+                }
+                total_musicas--;                          // Decrementa o contador de músicas
+                cout << "Música removida com sucesso!\n"; // Informa ao usuário que a música foi removida
             }
             else
             {
@@ -55,7 +72,7 @@ int main()
         {
             cout << "Playlist de Músicas:\n";
             // Itera sobre todas as músicas da playlist e as exibe junto com suas posições
-            for (int i = 0; i < playlist.size(); ++i)
+            for (int i = 0; i < total_musicas; ++i)
             {
                 cout << i + 1 << ". " << playlist[i] << endl; // Exibe a posição e o nome da música
             }

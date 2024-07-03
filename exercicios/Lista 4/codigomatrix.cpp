@@ -1,30 +1,31 @@
 #include <iostream> // Biblioteca para entrada e saída de dados em C++
-#include <string>   // Biblioteca para utilizar strings
-
-// Função para verificar se o código inserido é igual ao código da Matrix
-bool verificarCodigoMatrix(std::string codigo)
-{
-    // Verifica se o código fornecido é igual ao código da Matrix
-    if (codigo == "0101")
-    {
-        return true; // Retorna verdadeiro se os códigos forem iguais
-    }
-    else
-    {
-        return false; // Retorna falso se os códigos forem diferentes
-    }
-}
 
 int main()
 {
-    std::string codigo;
+    const int MAX_CARACTERES = 10; // Tamanho máximo para o código
+    char codigo[MAX_CARACTERES];   // Array de caracteres para armazenar o código
+
+    // Código da Matrix: "0101"
+    const char codigoMatrix[] = "0101";
 
     // Solicita ao usuário que insira o código
     std::cout << "Insira o codigo: ";
     std::cin >> codigo;
 
-    // Verifica se o código inserido é o código da Matrix
-    if (verificarCodigoMatrix(codigo))
+    // Verifica se o código inserido é igual ao código da Matrix
+    int i = 0;
+    while (codigo[i] != '\0' && codigoMatrix[i] != '\0')
+    {
+        if (codigo[i] != codigoMatrix[i])
+        {
+            std::cout << "O codigo inserido nao e o codigo da Matrix." << std::endl;
+            return 0; // Encerra o programa se os códigos não forem iguais
+        }
+        i++;
+    }
+
+    // Verifica se ambos os códigos terminaram ao mesmo tempo
+    if (codigo[i] == '\0' && codigoMatrix[i] == '\0')
     {
         std::cout << "O codigo inserido e o codigo da Matrix." << std::endl;
     }

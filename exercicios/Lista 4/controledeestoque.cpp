@@ -8,7 +8,8 @@ void adicionarProduto(std::string produtos[], int quantidades[], int tamanho, st
 }
 
 // Função para remover produtos vendidos do estoque
-void removerProduto(std::string produtos[], int quantidades[], int tamanho, std::string produto, int quantidade)
+void removerProduto(std::string produtos[], int quantidades[], int tamanho, std::string 
+produto, int quantidade)
 {
     for (int i = 0; i < tamanho; i++) // Loop para percorrer o array de produtos
     {
