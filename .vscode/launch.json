@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP",
-      "program": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/build/Debug/outDebug",
+      "cwd": "c:/Users/Lenon/OneDrive - Sistema FIEMG/Documentos/GitHub/AulasC-CPP/exercicios/Lista 4",
+      "program": "c:/Users/Lenon/OneDrive - Sistema FIEMG/Documentos/GitHub/AulasC-CPP/exercicios/Lista 4/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

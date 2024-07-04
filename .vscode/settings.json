@@ -105,6 +105,7 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "fstream": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "stack": "cpp"
   }
 }
