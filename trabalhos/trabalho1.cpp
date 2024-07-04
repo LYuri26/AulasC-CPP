@@ -1,207 +1,165 @@
 #include <iostream>
-#include <string>
-#include <sstream> // Para std::stringstream
-#include <limits>  // Para std::numeric_limits
 
-// Definindo a estrutura para representar o personagem
-struct Personagem
-{
-    std::string nome;
-    std::string apelido;
-    std::string origem;
-    std::string dataNascimento;
-    std::string sexo;
-    std::string classeSocial;
-    std::string ocupacao;
-    std::string historia;
-    std::string motivacao;
-    std::string aparencia;
-    int forca;
-    int destreza;
-    int constituicao;
-    int inteligencia;
-    int sabedoria;
-    int carisma;
-    std::string habilidades[12];
-    std::string nomeImplante;
-    std::string localizacaoImplante;
-    std::string funcaoImplante;
-    int custoImplante;
-    std::string armas;
-    std::string armaduras;
-    std::string equipamentos;
-    double creditos;
-    int reputacao;
-    std::string gangue;
-    std::string conexoes;
-};
+using namespace std;
 
-// Função para solicitar e validar uma entrada de string não vazia
-std::string solicitarEntradaStringNaoVazia(const std::string &mensagem)
-{
-    std::string entrada;
-    std::cout << mensagem << ": ";
-    std::getline(std::cin >> std::ws, entrada);
-    return entrada;
-}
-
-// Função para solicitar e validar uma entrada de inteiro não negativo
-int solicitarEntradaInteiroNaoNegativo(const std::string &mensagem)
-{
-    int entrada;
-    std::string line;
-    while (true)
-    {
-        std::cout << mensagem << ": ";
-        std::getline(std::cin, line);
-        std::stringstream ss(line);
-        if (ss >> entrada && entrada >= 0)
-        {
-            // Se a conversão para inteiro foi bem sucedida e o número é não negativo, retorna
-            return entrada;
-        }
-        std::cout << "Entrada inválida. Por favor, digite um número inteiro não negativo.\n";
-    }
-}
-
-// Função para preencher os dados do personagem
-void preencherDadosPersonagem(Personagem &personagem)
-{
-    std::cout << "Preenchendo os dados do personagem:\n";
-    personagem.nome = solicitarEntradaStringNaoVazia("Nome");
-    personagem.apelido = solicitarEntradaStringNaoVazia("Apelido");
-    personagem.origem = solicitarEntradaStringNaoVazia("Origem");
-    personagem.dataNascimento = solicitarEntradaStringNaoVazia("Data de Nascimento");
-    personagem.sexo = solicitarEntradaStringNaoVazia("Sexo");
-    personagem.classeSocial = solicitarEntradaStringNaoVazia("Classe Social");
-    personagem.ocupacao = solicitarEntradaStringNaoVazia("Ocupação");
-    personagem.historia = solicitarEntradaStringNaoVazia("História");
-    personagem.motivacao = solicitarEntradaStringNaoVazia("Motivação");
-    personagem.aparencia = solicitarEntradaStringNaoVazia("Aparência");
-}
-
-// Função para preencher os atributos do personagem
-void preencherAtributos(Personagem &personagem)
-{
-    std::cout << "Preenchendo os atributos do personagem:\n";
-    personagem.forca = solicitarEntradaInteiroNaoNegativo("Força (FOR)");
-    personagem.destreza = solicitarEntradaInteiroNaoNegativo("Destreza (DES)");
-    personagem.constituicao = solicitarEntradaInteiroNaoNegativo("Constituição (CON)");
-    personagem.inteligencia = solicitarEntradaInteiroNaoNegativo("Inteligência (INT)");
-    personagem.sabedoria = solicitarEntradaInteiroNaoNegativo("Sabedoria (SAB)");
-    personagem.carisma = solicitarEntradaInteiroNaoNegativo("Carisma (CAR)");
-}
-
-// Função para preencher as habilidades do personagem
-void preencherHabilidades(Personagem &personagem)
-{
-    std::cout << "Preenchendo as habilidades do personagem:\n";
-    for (int i = 0; i < 12; ++i)
-    {
-        std::cout << "Nome da habilidade " << i + 1 << ": ";
-        std::getline(std::cin >> std::ws, personagem.habilidades[i]); // Permite ao usuário inserir o nome da habilidade
-    }
-}
-
-// Função para preencher o implante cibernético do personagem
-void preencherImplanteCibernetico(Personagem &personagem)
-{
-    std::cout << "Preenchendo o implante cibernético do personagem:\n";
-    personagem.nomeImplante = solicitarEntradaStringNaoVazia("Nome do implante");
-    personagem.localizacaoImplante = solicitarEntradaStringNaoVazia("Localização do implante");
-    personagem.funcaoImplante = solicitarEntradaStringNaoVazia("Função do implante");
-    personagem.custoImplante = solicitarEntradaInteiroNaoNegativo("Custo do implante em créditos");
-}
-
-// Função para preencher os equipamentos do personagem
-void preencherEquipamentos(Personagem &personagem)
-{
-    std::cout << "Preenchendo os equipamentos do personagem:\n";
-    personagem.armas = solicitarEntradaStringNaoVazia("Armas");
-    personagem.armaduras = solicitarEntradaStringNaoVazia("Armaduras");
-    personagem.equipamentos = solicitarEntradaStringNaoVazia("Outros equipamentos");
-}
-
-// Função para preencher as informações financeiras do personagem
-void preencherDinheiro(Personagem &personagem)
-{
-    std::cout << "Preenchendo as informações financeiras do personagem:\n";
-    personagem.creditos = solicitarEntradaInteiroNaoNegativo("Quantidade de créditos");
-}
-
-// Função para preencher outras informações do personagem
-void preencherOutrasInformacoes(Personagem &personagem)
-{
-    std::cout << "Preenchendo outras informações do personagem:\n";
-    personagem.reputacao = solicitarEntradaInteiroNaoNegativo("Reputação");
-    personagem.gangue = solicitarEntradaStringNaoVazia("Gangue");
-    personagem.conexoes = solicitarEntradaStringNaoVazia("Conexões");
-}
-
-// Função para criar a ficha de personagem
-Personagem criarFichaPersonagem()
-{
-    Personagem personagem;
-    preencherDadosPersonagem(personagem);
-    preencherAtributos(personagem);
-    preencherHabilidades(personagem);
-    preencherImplanteCibernetico(personagem);
-    preencherEquipamentos(personagem);
-    preencherDinheiro(personagem);
-    preencherOutrasInformacoes(personagem);
-    return personagem;
-}
-
-// Função principal
 int main()
 {
-    Personagem personagem = criarFichaPersonagem();
+    // Variáveis para armazenar os dados do personagem
+    string nome;                // Nome do personagem
+    string apelido;             // Apelido do personagem
+    string origem;              // Origem do personagem
+    string dataNascimento;      // Data de nascimento do personagem
+    string sexo;                // Sexo do personagem
+    string classeSocial;        // Classe social do personagem
+    string ocupacao;            // Ocupação do personagem
+    string historia;            // História do personagem
+    string motivacao;           // Motivação do personagem
+    string aparencia;           // Aparência do personagem
+    int forca;                  // Atributo: Força
+    int destreza;               // Atributo: Destreza
+    int constituicao;           // Atributo: Constituição
+    int inteligencia;           // Atributo: Inteligência
+    int sabedoria;              // Atributo: Sabedoria
+    int carisma;                // Atributo: Carisma
+    string habilidades[12];     // Array de habilidades do personagem
+    string nomeImplante;        // Nome do implante cibernético
+    string localizacaoImplante; // Localização do implante cibernético no corpo
+    string funcaoImplante;      // Função do implante cibernético
+    int custoImplante;          // Custo do implante em créditos
+    string armas;               // Armas do personagem
+    string armaduras;           // Armaduras do personagem
+    string equipamentos;        // Outros equipamentos do personagem
+    double creditos;            // Créditos financeiros do personagem
+    int reputacao;              // Reputação do personagem
+    string gangue;              // Gangue à qual o personagem pertence
+    string conexoes;            // Conexões do personagem
+    char opcao;                 // Opção do usuário para adicionar mais habilidades
 
-    // Exibindo a ficha de personagem
-    std::cout << "\n=== Ficha de Personagem ===\n";
-    std::cout << "Nome: " << personagem.nome << "\n";
-    std::cout << "Apelido: " << personagem.apelido << "\n";
-    std::cout << "Origem: " << personagem.origem << "\n";
-    std::cout << "Data de Nascimento: " << personagem.dataNascimento << "\n";
-    std::cout << "Sexo: " << personagem.sexo << "\n";
-    std::cout << "Classe Social: " << personagem.classeSocial << "\n";
-    std::cout << "Ocupação: " << personagem.ocupacao << "\n";
-    std::cout << "História: " << personagem.historia << "\n";
-    std::cout << "Motivação: " << personagem.motivacao << "\n";
-    std::cout << "Aparência: " << personagem.aparencia << "\n";
+    // Solicitando entradas ao usuário
+    cout << "Preenchendo os dados do personagem:\n"; // Imprime instruções para o usuário
+    cout << "Nome: ";
+    cin >> nome; // Lê o nome do personagem
+    cout << "Apelido: ";
+    cin >> apelido; // Lê o apelido do personagem
+    cout << "Origem: ";
+    cin >> origem; // Lê a origem do personagem
+    cout << "Data de Nascimento: ";
+    cin >> dataNascimento; // Lê a data de nascimento do personagem
+    cout << "Sexo: ";
+    cin >> sexo; // Lê o sexo do personagem
+    cout << "Classe Social: ";
+    cin >> classeSocial; // Lê a classe social do personagem
+    cout << "Ocupação: ";
+    cin >> ocupacao; // Lê a ocupação do personagem
+    cout << "História: ";
+    cin >> historia; // Lê a história do personagem
+    cout << "Motivação: ";
+    cin >> motivacao; // Lê a motivação do personagem
+    cout << "Aparência: ";
+    cin >> aparencia; // Lê a aparência do personagem
 
-    std::cout << "\n=== Atributos ===\n";
-    std::cout << "Força (FOR): " << personagem.forca << "\n";
-    std::cout << "Destreza (DES): " << personagem.destreza << "\n";
-    std::cout << "Constituição (CON): " << personagem.constituicao << "\n";
-    std::cout << "Inteligência (INT): " << personagem.inteligencia << "\n";
-    std::cout << "Sabedoria (SAB): " << personagem.sabedoria << "\n";
-    std::cout << "Carisma (CAR): " << personagem.carisma << "\n";
+    cout << "\nPreenchendo os atributos do personagem:\n"; // Instruções para preencher atributos
+    cout << "Força (FOR): ";
+    cin >> forca; // Lê o valor da Força
+    cout << "Destreza (DES): ";
+    cin >> destreza; // Lê o valor da Destreza
+    cout << "Constituição (CON): ";
+    cin >> constituicao; // Lê o valor da Constituição
+    cout << "Inteligência (INT): ";
+    cin >> inteligencia; // Lê o valor da Inteligência
+    cout << "Sabedoria (SAB): ";
+    cin >> sabedoria; // Lê o valor da Sabedoria
+    cout << "Carisma (CAR): ";
+    cin >> carisma; // Lê o valor do Carisma
 
-    std::cout << "\n=== Habilidades ===\n";
-    for (int i = 0; i < 12; ++i)
+    cout << "\nPreenchendo as habilidades do personagem:\n"; // Instruções para preencher habilidades
+    for (int i = 0; i < 12; ++i)                             // Laço para preencher até 12 habilidades
     {
-        std::cout << "Habilidade " << i + 1 << ": " << personagem.habilidades[i] << "\n";
+        cout << "Nome da habilidade " << i + 1 << ": ";
+        cin >> habilidades[i]; // Lê o nome da habilidade
+        cout << "Deseja mais uma habilidade? 'S' para SIM e 'N' para NÃO:\n";
+        cin >> opcao;     // Lê a opção do usuário
+        if (opcao == 'N') // Se a opção for 'N', quebra o laço
+        {
+            break;
+        }
     }
 
-    std::cout << "\n=== Implante Cibernético ===\n";
-    std::cout << "Nome do Implante: " << personagem.nomeImplante << "\n";
-    std::cout << "Localização do Implante: " << personagem.localizacaoImplante << "\n";
-    std::cout << "Função do Implante: " << personagem.funcaoImplante << "\n";
-    std::cout << "Custo do Implante (créditos): " << personagem.custoImplante << "\n";
+    cout << "\nPreenchendo o implante cibernético do personagem:\n"; // Instruções para preencher implante
+    cout << "Nome do implante: ";
+    cin >> nomeImplante; // Lê o nome do implante
+    cout << "Localização do implante: ";
+    cin >> localizacaoImplante; // Lê a localização do implante
+    cout << "Função do implante: ";
+    cin >> funcaoImplante; // Lê a função do implante
+    cout << "Custo do implante em créditos: ";
+    cin >> custoImplante; // Lê o custo do implante em créditos
 
-    std::cout << "\n=== Equipamentos ===\n";
-    std::cout << "Armas: " << personagem.armas << "\n";
-    std::cout << "Armaduras: " << personagem.armaduras << "\n";
-    std::cout << "Outros Equipamentos: " << personagem.equipamentos << "\n";
+    cout << "\nPreenchendo os equipamentos do personagem:\n"; // Instruções para preencher equipamentos
+    cout << "Armas: ";
+    cin >> armas; // Lê as armas do personagem
+    cout << "Armaduras: ";
+    cin >> armaduras; // Lê as armaduras do personagem
+    cout << "Outros equipamentos: ";
+    cin >> equipamentos; // Lê outros equipamentos do personagem
 
-    std::cout << "\n=== Dinheiro ===\n";
-    std::cout << "Créditos: " << personagem.creditos << "\n";
+    cout << "\nPreenchendo as informações financeiras do personagem:\n"; // Instruções para preencher informações financeiras
+    cout << "Quantidade de créditos: ";
+    cin >> creditos; // Lê a quantidade de créditos
 
-    std::cout << "\n=== Outras Informações ===\n";
-    std::cout << "Reputação: " << personagem.reputacao << "\n";
-    std::cout << "Gangue: " << personagem.gangue << "\n";
-    std::cout << "Conexões: " << personagem.conexoes << "\n";
+    cout << "\nPreenchendo outras informações do personagem:\n"; // Instruções para preencher outras informações
+    cout << "Reputação: ";
+    cin >> reputacao; // Lê a reputação do personagem
+    cout << "Gangue: ";
+    cin >> gangue; // Lê a gangue do personagem
+    cout << "Conexões: ";
+    cin >> conexoes; // Lê as conexões do personagem
 
-    return 0;
+    // Exibindo a ficha de personagem
+    cout << "\n=== Ficha de Personagem ===\n";
+    cout << "Nome: " << nome << "\n";                         // Exibe o nome
+    cout << "Apelido: " << apelido << "\n";                   // Exibe o apelido
+    cout << "Origem: " << origem << "\n";                     // Exibe a origem
+    cout << "Data de Nascimento: " << dataNascimento << "\n"; // Exibe a data de nascimento
+    cout << "Sexo: " << sexo << "\n";                         // Exibe o sexo
+    cout << "Classe Social: " << classeSocial << "\n";        // Exibe a classe social
+    cout << "Ocupação: " << ocupacao << "\n";                 // Exibe a ocupação
+    cout << "História: " << historia << "\n";                 // Exibe a história
+    cout << "Motivação: " << motivacao << "\n";               // Exibe a motivação
+    cout << "Aparência: " << aparencia << "\n";               // Exibe a aparência
+
+    cout << "\n=== Atributos ===\n";
+    cout << "Força (FOR): " << forca << "\n";               // Exibe a força
+    cout << "Destreza (DES): " << destreza << "\n";         // Exibe a destreza
+    cout << "Constituição (CON): " << constituicao << "\n"; // Exibe a constituição
+    cout << "Inteligência (INT): " << inteligencia << "\n"; // Exibe a inteligência
+    cout << "Sabedoria (SAB): " << sabedoria << "\n";       // Exibe a sabedoria
+    cout << "Carisma (CAR): " << carisma << "\n";           // Exibe o carisma
+
+    cout << "\n=== Habilidades ===\n";
+    for (int i = 0; i < 12; ++i) // Laço para exibir todas as habilidades
+    {
+        cout << "Habilidade " << i + 1 << ": " << habilidades[i] << "\n"; // Exibe cada habilidade
+    }
+
+    cout << "\n=== Implante Cibernético ===\n";
+    cout << "Nome do Implante: " << nomeImplante << "\n";               // Exibe o nome do implante
+    cout << "Localização do Implante: " << localizacaoImplante << "\n"; // Exibe a localização do implante
+    cout << "Função do Implante: " << funcaoImplante << "\n";           // Exibe a função do implante
+    cout << "Custo do Implante (créditos): " << custoImplante << "\n";  // Exibe o custo do implante
+
+    cout << "\n=== Equipamentos ===\n";
+    cout << "Armas: " << armas << "\n";                      // Exibe as armas
+    cout << "Armaduras: " << armaduras << "\n";              // Exibe as armaduras
+    cout << "Outros Equipamentos: " << equipamentos << "\n"; // Exibe outros equipamentos
+
+    cout << "\n=== Dinheiro ===\n";
+    cout << "Créditos: " << creditos << "\n"; // Exibe a quantidade de créditos
+
+    cout << "\n=== Outras Informações ===\n";
+    cout << "Reputação: " << reputacao << "\n"; // Exibe a reputação
+    cout << "Gangue: " << gangue << "\n";       // Exibe a gangue
+    cout << "Conexões: " << conexoes << "\n";   // Exibe as conexões
+
+    return 0; // Finaliza o programa
 }
