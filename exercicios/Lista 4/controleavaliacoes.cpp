@@ -7,9 +7,12 @@ int main()
     int tamanho = 0;           // Variável para controlar o número atual de notas
 
     // Adicionando exemplos de notas
-    notas[tamanho++] = 8.5;
-    notas[tamanho++] = 7.9;
-    notas[tamanho++] = 9.2;
+    notas[tamanho] = 8.5;
+    tamanho++;
+    notas[tamanho] = 7.9;
+    tamanho++;
+    notas[tamanho] = 9.2;
+    tamanho++;
 
     // Exibindo as notas e calculando a média
     std::cout << "Notas do Recruta:\n";

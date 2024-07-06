@@ -25,8 +25,11 @@ int main()
     cout << endl;
 
     // Adiciona alguns itens à lista de compras inicialmente
-    listaCompras[numItens++] = "Leite";
-    listaCompras[numItens++] = "Ovos";
+    listaCompras[numItens] = "Leite";
+    numItens++; // Incrementa o número de itens após adicionar "Leite"
+
+    listaCompras[numItens] = "Ovos";
+    numItens++; // Incrementa o número de itens após adicionar "Ovos"
 
     // Exibe a lista de compras após inserir itens
     cout << "Lista de compras após inserir itens:\n";
