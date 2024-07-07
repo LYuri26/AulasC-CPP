@@ -106,6 +106,7 @@
     "typeinfo": "cpp",
     "fstream": "cpp",
     "sstream": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "chrono": "cpp"
   }
 }
