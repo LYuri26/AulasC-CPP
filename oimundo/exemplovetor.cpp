@@ -78,6 +78,7 @@ int main()
         "Camisa da seleção brasileira",
         "Uniforme do Manchester United",
         "Uniforme do Real Madrid",
+        "Uniforme do SENAI",
         "Camisa de treino de futebol",
         "Agasalho de futebol para aquecimento",
         "Roupa de goleiro completa",
@@ -119,10 +120,10 @@ int main()
         return 1;
     }
 
-    cout << "Digite o dia de seu aniversário (1-30): ";
+    cout << "Digite o dia de seu aniversário (1-31): ";
     cin >> diaDoAniversario;
 
-    if (diaDoAniversario >= 1 && diaDoAniversario <= 30)
+    if (diaDoAniversario >= 1 && diaDoAniversario <= 31)
     {
         resultadoDiaDoAniversario = diaVetor[diaDoAniversario - 1];
     }
@@ -150,3 +151,4 @@ int main()
 
     return 0;
 }
+
