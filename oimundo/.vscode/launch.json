@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/oimundo",
-      "program": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/oimundo/build/Debug/outDebug",
+      "cwd": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/oimundo/extras",
+      "program": "c:/Users/Instrutor/Documents/GitHub/AulasC-CPP/oimundo/extras/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
