@@ -25,7 +25,7 @@ int main()
     string nomeImplante;        // Nome do implante cibernético
     string localizacaoImplante; // Localização do implante cibernético no corpo
     string funcaoImplante;      // Função do implante cibernético
-    int custoImplante;          // Custo do implante em créditos
+    double custoImplante;       // Custo do implante em créditos
     string armas;               // Armas do personagem
     string armaduras;           // Armaduras do personagem
     string equipamentos;        // Outros equipamentos do personagem
