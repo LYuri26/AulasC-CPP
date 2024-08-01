@@ -48,29 +48,29 @@ int main()
     float nivelMagia;           // Nível de magia do personagem
 
     // Solicitando entradas ao usuário
-    cout << "Preenchendo os dados do personagem:\n"; // Imprime instruções para o usuário
+    cout << "Preenchendo os dados do personagem:\n";
     cout << "Nome: ";
-    cin >> nome; // Lê o nome do personagem
+    getline(cin, nome); // Lê o nome do personagem
     cout << "Raça: ";
-    cin >> raca; // Lê a raça do personagem
+    getline(cin, raca); // Lê a raça do personagem
     cout << "Classe: ";
-    cin >> classe; // Lê a classe do personagem
+    getline(cin, classe); // Lê a classe do personagem
     cout << "Idade: ";
     cin >> idade; // Lê a idade do personagem
     cout << "Sexo: ";
     cin >> sexo; // Lê o sexo do personagem
     cout << "Classe Social: ";
-    cin >> classeSocial; // Lê a classe social do personagem
+    getline(cin, classeSocial); // Lê a classe social do personagem
     cout << "Ocupação: ";
-    cin >> ocupacao; // Lê a ocupação do personagem
-    cout << "História: ";
-    cin >> historia; // Lê a história do personagem
+    getline(cin, ocupacao); // Lê a ocupação do personagem
+    cout << "História (digite várias linhas e pressione ENTER em uma linha vazia para terminar):\n";
+    getline(cin, historia); // Lê a história do personagem
     cout << "Motivação: ";
-    cin >> motivacao; // Lê a motivação do personagem
+    getline(cin, motivacao); // Lê a motivação do personagem
     cout << "Aparência: ";
-    cin >> aparencia; // Lê a aparência do personagem
+    getline(cin, aparencia); // Lê a aparência do personagem
 
-    cout << "\nPreenchendo os atributos do personagem:\n"; // Instruções para preencher atributos
+    cout << "\nPreenchendo os atributos do personagem:\n";
     cout << "Força (FOR): ";
     cin >> forca; // Lê o valor da Força
     cout << "Destreza (DES): ";
@@ -84,7 +84,7 @@ int main()
     cout << "Carisma (CAR): ";
     cin >> carisma; // Lê o valor do Carisma
 
-    cout << "\nPreenchendo as habilidades do personagem:\n"; // Instruções para preencher habilidades
+    cout << "\nPreenchendo as habilidades do personagem:\n";
     cout << "Espadas: ";
     cin >> espadas; // Lê a habilidade com espadas
     cout << "Arcos: ";
@@ -110,35 +110,35 @@ int main()
     cout << "Línguas: ";
     cin >> linguas; // Lê a quantidade de idiomas falados
 
-    cout << "\nPreenchendo o artefato mágico do personagem:\n"; // Instruções para preencher artefato
+    cout << "\nPreenchendo o artefato mágico do personagem:\n";
     cout << "Nome do artefato: ";
-    cin >> nomeArtefato; // Lê o nome do artefato
+    getline(cin, nomeArtefato); // Lê o nome do artefato
     cout << "Localização do artefato: ";
-    cin >> localizacaoArtefato; // Lê a localização do artefato
+    getline(cin, localizacaoArtefato); // Lê a localização do artefato
     cout << "Função do artefato: ";
-    cin >> funcaoArtefato; // Lê a função do artefato
+    getline(cin, funcaoArtefato); // Lê a função do artefato
     cout << "Custo do artefato em moedas de ouro: ";
     cin >> custoArtefato; // Lê o custo do artefato em moedas de ouro
 
-    cout << "\nPreenchendo os equipamentos do personagem:\n"; // Instruções para preencher equipamentos
+    cout << "\nPreenchendo os equipamentos do personagem:\n";
     cout << "Armas: ";
-    cin >> armas; // Lê as armas do personagem
+    getline(cin, armas); // Lê as armas do personagem
     cout << "Armaduras: ";
-    cin >> armaduras; // Lê as armaduras do personagem
+    getline(cin, armaduras); // Lê as armaduras do personagem
     cout << "Outros equipamentos: ";
-    cin >> equipamentos; // Lê outros equipamentos do personagem
+    getline(cin, equipamentos); // Lê outros equipamentos do personagem
 
-    cout << "\nPreenchendo as informações financeiras do personagem:\n"; // Instruções para preencher informações financeiras
+    cout << "\nPreenchendo as informações financeiras do personagem:\n";
     cout << "Quantidade de moedas de ouro: ";
     cin >> moedasOuro; // Lê a quantidade de moedas de ouro
 
-    cout << "\nPreenchendo outras informações do personagem:\n"; // Instruções para preencher outras informações
+    cout << "\nPreenchendo outras informações do personagem:\n";
     cout << "Reputação (0.0 a 100.0): ";
     cin >> reputacao; // Lê a reputação do personagem
     cout << "Aliança: ";
-    cin >> alianca; // Lê a aliança do personagem
+    getline(cin, alianca); // Lê a aliança do personagem
     cout << "Conexões: ";
-    cin >> conexoes; // Lê as conexões do personagem
+    getline(cin, conexoes); // Lê as conexões do personagem
     cout << "Nível de Magia (0.0 a 100.0): ";
     cin >> nivelMagia; // Lê o nível de magia do personagem
 

@@ -38,11 +38,11 @@ int main()
     // Solicitando entradas ao usuário
     cout << "Preenchendo os dados do personagem:\n"; // Imprime instruções para o usuário
     cout << "Nome: ";
-    cin >> nome; // Lê o nome do personagem
+    getline(cin, nome); // Lê o nome do personagem
     cout << "Apelido: ";
-    cin >> apelido; // Lê o apelido do personagem
+    getline(cin, apelido); // Lê o apelido do personagem
     cout << "Origem: ";
-    cin >> origem; // Lê a origem do personagem
+    getline(cin, origem); // Lê a origem do personagem
     cout << "Data de Nascimento: ";
     cin >> dataNascimento; // Lê a data de nascimento do personagem
     cout << "Sexo: ";
@@ -52,11 +52,11 @@ int main()
     cout << "Ocupação: ";
     cin >> ocupacao; // Lê a ocupação do personagem
     cout << "História: ";
-    cin >> historia; // Lê a história do personagem
+    getline(cin, historia); // Lê a história do personagem
     cout << "Motivação: ";
-    cin >> motivacao; // Lê a motivação do personagem
+    getline(cin, motivacao); // Lê a motivação do personagem
     cout << "Aparência: ";
-    cin >> aparencia; // Lê a aparência do personagem
+    getline(cin, aparencia); // Lê a aparência do personagem
 
     cout << "\nPreenchendo os atributos do personagem:\n"; // Instruções para preencher atributos
     cout << "Força (FOR): ";
@@ -97,11 +97,11 @@ int main()
 
     cout << "\nPreenchendo os equipamentos do personagem:\n"; // Instruções para preencher equipamentos
     cout << "Armas: ";
-    cin >> armas; // Lê as armas do personagem
+    getline(cin, armas); // Lê as armas do personagem
     cout << "Armaduras: ";
-    cin >> armaduras; // Lê as armaduras do personagem
+    getline(cin, armaduras); // Lê as armaduras do personagem
     cout << "Outros equipamentos: ";
-    cin >> equipamentos; // Lê outros equipamentos do personagem
+    getline(cin, equipamentos); // Lê outros equipamentos do personagem
 
     cout << "\nPreenchendo as informações financeiras do personagem:\n"; // Instruções para preencher informações financeiras
     cout << "Quantidade de créditos: ";
@@ -113,7 +113,7 @@ int main()
     cout << "Gangue: ";
     cin >> gangue; // Lê a gangue do personagem
     cout << "Conexões: ";
-    cin >> conexoes; // Lê as conexões do personagem
+    getline(cin, conexoes); // Lê as conexões do personagem
 
     // Exibindo a ficha de personagem
     cout << "\n=== Ficha de Personagem ===\n";
