@@ -1,52 +1,77 @@
-#include <iostream>
+#include <iostream>  // Biblioteca padrão para entrada e saída
 
-// Função para imprimir o vetor
+// Função para imprimir o vetor com cores e destacar os elementos
 void imprimirVetor(int vetor[], int tamanho) {
     for (int i = 0; i < tamanho; i++) {
-        std::cout << vetor[i] << " ";
+        if (i == 0) {
+            // Exibe o primeiro elemento
+            std::cout << "\033[1;34m[" << vetor[i] << "]\033[0m "; // Azul para o primeiro elemento
+        } else {
+            std::cout << vetor[i] << " ";  // Exibe os outros elementos
+        }
     }
     std::cout << std::endl;
 }
 
-int main() {
-    // Alturas dos legionários (em centímetros)
-    int alturas[] = {175, 165, 185, 190, 175, 160, 170, 180, 172, 178, 168, 176, 182, 174, 169, 185, 168, 172, 183, 177};
-    int n = 20; // Número total de legionários
-    
-    // Mostra o vetor antes da organização
-    std::cout << "Vetor antes da organização: ";
-    imprimirVetor(alturas, n);
-    
-    // Implementação do Bubble Sort
-    // Loop externo para percorrer todo o vetor exceto o último elemento
-    for (int i = 0; i < n - 1; i++)
-    {
-        // Loop interno para percorrer o vetor e comparar os elementos adjacentes
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            // Condição para verificar se o elemento atual é maior que o próximo elemento
-            if (alturas[j] > alturas[j + 1])
-            {
-                // Troca de alturas
-                int temp = alturas[j];       // Armazena temporariamente o valor do elemento atual
-                alturas[j] = alturas[j + 1]; // Substitui o elemento atual pelo próximo elemento
-                alturas[j + 1] = temp;       // Substitui o próximo elemento pelo valor armazenado temporariamente
-                
-                // Mostra o vetor durante a organização
-                std::cout << "Vetor durante a organização: ";
-                imprimirVetor(alturas, n);
+// Função para ordenar com Bubble Sort e mostrar cada passo
+void bubbleSort(int vetor[], int tamanho) {
+    // Loop externo para percorrer todo o vetor
+    for (int i = 0; i < tamanho - 1; i++) {
+        // Loop interno para comparar elementos adjacentes
+        for (int j = 0; j < tamanho - i - 1; j++) {
+            // Se o elemento atual for maior que o próximo, realizamos a troca
+            if (vetor[j] > vetor[j + 1]) {
+                // Exibindo o vetor antes da troca com destaque nas posições dos elementos
+                std::cout << "Vetor antes da troca (índices " << j << " e " << j + 1 << "): ";
+                for (int k = 0; k < tamanho; k++) {
+                    if (k == j) {
+                        std::cout << "\033[1;31m[" << vetor[k] << "]\033[0m "; // Vermelho para o elemento j
+                    } else if (k == j + 1) {
+                        std::cout << "\033[1;32m[" << vetor[k] << "]\033[0m "; // Verde para o elemento j+1
+                    } else {
+                        std::cout << vetor[k] << " "; // Outros elementos são exibidos normalmente
+                    }
+                }
+                std::cout << std::endl;
+
+                // Realizando a troca manualmente (sem uso de swap)
+                int temp = vetor[j];       // Armazena o valor temporário de vetor[j]
+                vetor[j] = vetor[j + 1];   // Substitui vetor[j] pelo valor de vetor[j+1]
+                vetor[j + 1] = temp;       // Atribui o valor temporário a vetor[j+1]
+
+                // Exibindo o vetor após a troca com os elementos destacados
+                std::cout << "Vetor após a troca (índices " << j << " e " << j + 1 << "): ";
+                for (int k = 0; k < tamanho; k++) {
+                    if (k == j) {
+                        std::cout << "\033[1;31m[" << vetor[k] << "]\033[0m "; // Vermelho para o elemento j
+                    } else if (k == j + 1) {
+                        std::cout << "\033[1;32m[" << vetor[k] << "]\033[0m "; // Verde para o elemento j+1
+                    } else {
+                        std::cout << vetor[k] << " "; // Outros elementos são exibidos normalmente
+                    }
+                }
+                std::cout << std::endl;
             }
         }
     }
+}
 
-    // Imprime as alturas dos legionários em ordem crescente
-    std::cout << "Alturas dos legionários em ordem crescente:\n";
-    // Loop para imprimir cada altura do vetor
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << alturas[i] << " ";
-    }
+int main() {
+    // Vetor com as alturas dos legionários em centímetros
+    int alturas[] = {175, 165, 185, 190, 175, 160, 170, 180, 172, 178, 168, 176, 182, 174, 169, 185, 168, 172, 183, 177};
+    int n = 20; // Número total de elementos no vetor
+
+    // Exibe o vetor antes da organização
+    std::cout << "Vetor antes da organização: ";
+    imprimirVetor(alturas, n);
     std::cout << std::endl;
+
+    // Chama a função de ordenação
+    bubbleSort(alturas, n);
+
+    // Exibe o vetor ordenado
+    std::cout << "Alturas dos legionários em ordem crescente: ";
+    imprimirVetor(alturas, n);
 
     return 0;
 }
