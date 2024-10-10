@@ -2,15 +2,15 @@
 
 using namespace std;
 
-// Função para aplicar o Bubble Sort
-void bubbleSort(int anosLancamento[], int tamanho) {
+// Função para aplicar o Bubble Sort Crescente
+void bubbleSortCrescente(int anosLancamento[], int tamanho) {
     bool houveTroca;  // Variável para verificar se houve troca
     for (int i = 0; i < tamanho - 1; i++) {
         houveTroca = false;  // Assume que não houve troca na primeira iteração
         for (int j = 0; j < tamanho - i - 1; j++) {
             if (anosLancamento[j] > anosLancamento[j + 1]) {
                 // Exibe o vetor antes da troca, com cores para destacar os elementos
-                cout << "\nAntes da troca:\n";
+                cout << "\nAntes da troca (Passo " << j + 1 << " - Iteração " << i + 1 << "):\n";
                 for (int k = 0; k < tamanho; k++) {
                     if (k == j) {
                         cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento atual
@@ -50,8 +50,56 @@ void bubbleSort(int anosLancamento[], int tamanho) {
     }
 }
 
-// Função para aplicar o Selection Sort
-void selectionSort(int anosLancamento[], int tamanho) {
+// Função para aplicar o Bubble Sort Decrescente
+void bubbleSortDecrescente(int anosLancamento[], int tamanho) {
+    bool houveTroca;  // Variável para verificar se houve troca
+    for (int i = 0; i < tamanho - 1; i++) {
+        houveTroca = false;  // Assume que não houve troca na primeira iteração
+        for (int j = 0; j < tamanho - i - 1; j++) {
+            if (anosLancamento[j] < anosLancamento[j + 1]) {
+                // Exibe o vetor antes da troca, com cores para destacar os elementos
+                cout << "\nAntes da troca (Passo " << j + 1 << " - Iteração " << i + 1 << "):\n";
+                for (int k = 0; k < tamanho; k++) {
+                    if (k == j) {
+                        cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento atual
+                    } else if (k == j + 1) {
+                        cout << "\033[1;32m[" << anosLancamento[k] << "]\033[0m ";  // Verde para o próximo elemento
+                    } else {
+                        cout << anosLancamento[k] << " ";  // Normal para os outros elementos
+                    }
+                }
+                cout << "\n";
+
+                // Realizando a troca manual
+                int temporario = anosLancamento[j];
+                anosLancamento[j] = anosLancamento[j + 1];
+                anosLancamento[j + 1] = temporario;
+
+                houveTroca = true;  // Marca que houve uma troca
+
+                // Exibe o vetor após a troca
+                cout << "\nApós a troca:\n";
+                for (int k = 0; k < tamanho; k++) {
+                    if (k == j) {
+                        cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento trocado
+                    } else if (k == j + 1) {
+                        cout << "\033[1;32m[" << anosLancamento[k] << "]\033[0m ";  // Verde para o elemento trocado
+                    } else {
+                        cout << anosLancamento[k] << " ";  // Normal para os outros elementos
+                    }
+                }
+                cout << "\n";
+            }
+        }
+        // Se não houver trocas, o vetor já está ordenado
+        if (!houveTroca) {
+            break;
+        }
+    }
+}
+
+// Função para aplicar o Selection Sort Crescente
+void selectionSortCrescente(int anosLancamento[], int tamanho) {
     for (int i = 0; i < tamanho - 1; i++) {
         int indiceMinimo = i;  // Assume que o primeiro elemento é o menor
         for (int j = i + 1; j < tamanho; j++) {
@@ -61,7 +109,7 @@ void selectionSort(int anosLancamento[], int tamanho) {
         }
 
         // Exibe o vetor antes da troca, com cores para destacar os elementos
-        cout << "\nAntes da troca:\n";
+        cout << "\nAntes da troca (Passo " << i + 1 << "):\n";
         for (int k = 0; k < tamanho; k++) {
             if (k == i) {
                 cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento atual
@@ -85,6 +133,49 @@ void selectionSort(int anosLancamento[], int tamanho) {
                 cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento trocado
             } else if (k == indiceMinimo) {
                 cout << "\033[1;32m[" << anosLancamento[k] << "]\033[0m ";  // Verde para o menor elemento encontrado
+            } else {
+                cout << anosLancamento[k] << " ";  // Normal para os outros elementos
+            }
+        }
+        cout << "\n";
+    }
+}
+
+// Função para aplicar o Selection Sort Decrescente
+void selectionSortDecrescente(int anosLancamento[], int tamanho) {
+    for (int i = 0; i < tamanho - 1; i++) {
+        int indiceMaximo = i;  // Assume que o primeiro elemento é o maior
+        for (int j = i + 1; j < tamanho; j++) {
+            if (anosLancamento[j] > anosLancamento[indiceMaximo]) {
+                indiceMaximo = j;  // Atualiza o índice do maior elemento
+            }
+        }
+
+        // Exibe o vetor antes da troca, com cores para destacar os elementos
+        cout << "\nAntes da troca (Passo " << i + 1 << "):\n";
+        for (int k = 0; k < tamanho; k++) {
+            if (k == i) {
+                cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento atual
+            } else if (k == indiceMaximo) {
+                cout << "\033[1;32m[" << anosLancamento[k] << "]\033[0m ";  // Verde para o maior elemento encontrado
+            } else {
+                cout << anosLancamento[k] << " ";  // Normal para os outros elementos
+            }
+        }
+        cout << "\n";
+
+        // Realizando a troca manual
+        int temporario = anosLancamento[i];
+        anosLancamento[i] = anosLancamento[indiceMaximo];
+        anosLancamento[indiceMaximo] = temporario;
+
+        // Exibe o vetor após a troca
+        cout << "\nApós a troca:\n";
+        for (int k = 0; k < tamanho; k++) {
+            if (k == i) {
+                cout << "\033[1;34m[" << anosLancamento[k] << "]\033[0m ";  // Azul para o elemento trocado
+            } else if (k == indiceMaximo) {
+                cout << "\033[1;32m[" << anosLancamento[k] << "]\033[0m ";  // Verde para o maior elemento encontrado
             } else {
                 cout << anosLancamento[k] << " ";  // Normal para os outros elementos
             }
@@ -118,15 +209,32 @@ int main() {
     int escolha;
     cin >> escolha;  // Recebe a escolha do usuário
 
+    // Menu de escolha de ordenação crescente ou decrescente
+    cout << "\nEscolha a ordem de ordenação:\n";
+    cout << "1. Crescente\n";
+    cout << "2. Decrescente\n";
+    int ordem;
+    cin >> ordem;
+
     // Executa a ordenação com base na escolha do usuário
     switch (escolha) {
         case 1:
-            cout << "\nOrdenando usando Bubble Sort...\n";
-            bubbleSort(anosLancamento, tamanho);  // Chama a função Bubble Sort
+            if (ordem == 1) {
+                cout << "\nOrdenando usando Bubble Sort Crescente...\n";
+                bubbleSortCrescente(anosLancamento, tamanho);
+            } else {
+                cout << "\nOrdenando usando Bubble Sort Decrescente...\n";
+                bubbleSortDecrescente(anosLancamento, tamanho);
+            }
             break;
         case 2:
-            cout << "\nOrdenando usando Selection Sort...\n";
-            selectionSort(anosLancamento, tamanho);  // Chama a função Selection Sort
+            if (ordem == 1) {
+                cout << "\nOrdenando usando Selection Sort Crescente...\n";
+                selectionSortCrescente(anosLancamento, tamanho);
+            } else {
+                cout << "\nOrdenando usando Selection Sort Decrescente...\n";
+                selectionSortDecrescente(anosLancamento, tamanho);
+            }
             break;
         default:
             cout << "Opção inválida! Tente novamente.\n";

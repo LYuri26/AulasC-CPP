@@ -2,13 +2,13 @@
 
 using namespace std;
 
-// Função para aplicar o Bubble Sort
+// Função para aplicar o Bubble Sort em ordem decrescente
 void bubbleSort(int pontuacao[], int tamanho) {
     bool houveTroca;  // Variável para verificar se houve troca
     for (int i = 0; i < tamanho - 1; i++) {
         houveTroca = false;  // Assume que não houve troca na primeira iteração
         for (int j = 0; j < tamanho - i - 1; j++) {
-            if (pontuacao[j] > pontuacao[j + 1]) {
+            if (pontuacao[j] < pontuacao[j + 1]) {  // Comparação ajustada para ordem decrescente
                 // Exibe o vetor antes da troca com coloração
                 cout << "\nAntes da troca:\n";
                 for (int k = 0; k < tamanho; k++) {
@@ -50,14 +50,14 @@ void bubbleSort(int pontuacao[], int tamanho) {
     }
 }
 
-// Função para aplicar o Insertion Sort
+// Função para aplicar o Insertion Sort em ordem decrescente
 void insertionSort(int pontuacao[], int tamanho) {
     for (int i = 1; i < tamanho; i++) {
         int chave = pontuacao[i];  // Armazena o elemento atual
         int j = i - 1;
 
-        // Mova os elementos do vetor que são maiores do que a chave para uma posição à frente
-        while (j >= 0 && pontuacao[j] > chave) {
+        // Mova os elementos do vetor que são menores do que a chave para uma posição à frente
+        while (j >= 0 && pontuacao[j] < chave) {  // Comparação ajustada para ordem decrescente
             // Exibe a movimentação com coloração
             cout << "\033[1;31m[Mover] " << pontuacao[j] << "\033[0m para a posição " << j + 1 << " (mover para frente)\n";
 
@@ -114,7 +114,7 @@ int main() {
     }
 
     // Exibe o vetor ordenado
-    cout << "\nVetor ordenado:\n";
+    cout << "\nVetor ordenado (decrescente):\n";
     imprimirVetor(pontuacao, tamanho);  // Imprime o vetor após a ordenação
 
     return 0;  // Encerra o programa com sucesso

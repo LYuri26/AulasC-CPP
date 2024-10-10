@@ -2,32 +2,31 @@
 
 using namespace std;
 
-// Função para aplicar o Bubble Sort
-void bubbleSort(int habilidadesDanca[], int tamanho) {
-    bool houveTroca;  // Variável para verificar se houve troca
+// Função para aplicar o Bubble Sort Crescente
+void bubbleSortCrescente(int habilidadesDanca[], int tamanho) {
+    bool houveTroca;
     for (int i = 0; i < tamanho - 1; i++) {
-        houveTroca = false;  // Assume que não houve troca na primeira iteração
+        houveTroca = false;
         for (int j = 0; j < tamanho - i - 1; j++) {
-            if (habilidadesDanca[j] > habilidadesDanca[j + 1]) {
-                // Exibe o vetor antes da troca, com cores para destacar os elementos
-                cout << "\nAntes da troca:\n";
-                for (int k = 0; k < tamanho; k++) {
-                    if (k == j) {
-                        cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento atual
-                    } else if (k == j + 1) {
-                        cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o próximo elemento
-                    } else {
-                        cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
-                    }
+            // Exibe o vetor antes de cada troca
+            cout << "\nIteração " << i + 1 << ", Passo " << j + 1 << " - Antes da troca:\n";
+            for (int k = 0; k < tamanho; k++) {
+                if (k == j) {
+                    cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento atual
+                } else if (k == j + 1) {
+                    cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o próximo elemento
+                } else {
+                    cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
                 }
-                cout << "\n";
+            }
+            cout << "\n";
 
-                // Realizando a troca manual
+            if (habilidadesDanca[j] > habilidadesDanca[j + 1]) {
+                // Realizando a troca
                 int temporario = habilidadesDanca[j];
                 habilidadesDanca[j] = habilidadesDanca[j + 1];
                 habilidadesDanca[j + 1] = temporario;
-
-                houveTroca = true;  // Marca que houve uma troca
+                houveTroca = true;
 
                 // Exibe o vetor após a troca
                 cout << "\nApós a troca:\n";
@@ -43,37 +42,81 @@ void bubbleSort(int habilidadesDanca[], int tamanho) {
                 cout << "\n";
             }
         }
-        // Se não houver trocas, o vetor já está ordenado
         if (!houveTroca) {
             break;
         }
     }
 }
 
-// Função para aplicar o Selection Sort
-void selectionSort(int habilidadesDanca[], int tamanho) {
+// Função para aplicar o Bubble Sort Decrescente
+void bubbleSortDecrescente(int habilidadesDanca[], int tamanho) {
+    bool houveTroca;
     for (int i = 0; i < tamanho - 1; i++) {
-        int indiceMinimo = i;  // Assume que o primeiro elemento é o menor
+        houveTroca = false;
+        for (int j = 0; j < tamanho - i - 1; j++) {
+            // Exibe o vetor antes de cada troca
+            cout << "\nIteração " << i + 1 << ", Passo " << j + 1 << " - Antes da troca:\n";
+            for (int k = 0; k < tamanho; k++) {
+                if (k == j) {
+                    cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento atual
+                } else if (k == j + 1) {
+                    cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o próximo elemento
+                } else {
+                    cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
+                }
+            }
+            cout << "\n";
+
+            if (habilidadesDanca[j] < habilidadesDanca[j + 1]) {
+                // Realizando a troca
+                int temporario = habilidadesDanca[j];
+                habilidadesDanca[j] = habilidadesDanca[j + 1];
+                habilidadesDanca[j + 1] = temporario;
+                houveTroca = true;
+
+                // Exibe o vetor após a troca
+                cout << "\nApós a troca:\n";
+                for (int k = 0; k < tamanho; k++) {
+                    if (k == j) {
+                        cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento trocado
+                    } else if (k == j + 1) {
+                        cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o elemento trocado
+                    } else {
+                        cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
+                    }
+                }
+                cout << "\n";
+            }
+        }
+        if (!houveTroca) {
+            break;
+        }
+    }
+}
+
+// Função para aplicar o Selection Sort Crescente
+void selectionSortCrescente(int habilidadesDanca[], int tamanho) {
+    for (int i = 0; i < tamanho - 1; i++) {
+        int indiceMinimo = i;
         for (int j = i + 1; j < tamanho; j++) {
+            // Exibe o vetor antes de cada troca
+            cout << "\nIteração " << i + 1 << ", Passo " << j + 1 << " - Antes da troca:\n";
+            for (int k = 0; k < tamanho; k++) {
+                if (k == i) {
+                    cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento atual
+                } else if (k == indiceMinimo) {
+                    cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o elemento mínimo encontrado
+                } else {
+                    cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
+                }
+            }
+            cout << "\n";
+
             if (habilidadesDanca[j] < habilidadesDanca[indiceMinimo]) {
-                indiceMinimo = j;  // Atualiza o índice do menor elemento
+                indiceMinimo = j;
             }
         }
-
-        // Exibe o vetor antes da troca, com cores para destacar os elementos
-        cout << "\nAntes da troca:\n";
-        for (int k = 0; k < tamanho; k++) {
-            if (k == i) {
-                cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento atual
-            } else if (k == indiceMinimo) {
-                cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o menor elemento encontrado
-            } else {
-                cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
-            }
-        }
-        cout << "\n";
-
-        // Realizando a troca manual
+        // Realizando a troca
         int temporario = habilidadesDanca[i];
         habilidadesDanca[i] = habilidadesDanca[indiceMinimo];
         habilidadesDanca[indiceMinimo] = temporario;
@@ -84,7 +127,49 @@ void selectionSort(int habilidadesDanca[], int tamanho) {
             if (k == i) {
                 cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento trocado
             } else if (k == indiceMinimo) {
-                cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o menor elemento encontrado
+                cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o elemento trocado
+            } else {
+                cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
+            }
+        }
+        cout << "\n";
+    }
+}
+
+// Função para aplicar o Selection Sort Decrescente
+void selectionSortDecrescente(int habilidadesDanca[], int tamanho) {
+    for (int i = 0; i < tamanho - 1; i++) {
+        int indiceMaximo = i;
+        for (int j = i + 1; j < tamanho; j++) {
+            // Exibe o vetor antes de cada troca
+            cout << "\nIteração " << i + 1 << ", Passo " << j + 1 << " - Antes da troca:\n";
+            for (int k = 0; k < tamanho; k++) {
+                if (k == i) {
+                    cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento atual
+                } else if (k == indiceMaximo) {
+                    cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o elemento máximo encontrado
+                } else {
+                    cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
+                }
+            }
+            cout << "\n";
+
+            if (habilidadesDanca[j] > habilidadesDanca[indiceMaximo]) {
+                indiceMaximo = j;
+            }
+        }
+        // Realizando a troca
+        int temporario = habilidadesDanca[i];
+        habilidadesDanca[i] = habilidadesDanca[indiceMaximo];
+        habilidadesDanca[indiceMaximo] = temporario;
+
+        // Exibe o vetor após a troca
+        cout << "\nApós a troca:\n";
+        for (int k = 0; k < tamanho; k++) {
+            if (k == i) {
+                cout << "\033[1;34m[" << habilidadesDanca[k] << "]\033[0m ";  // Azul para o elemento trocado
+            } else if (k == indiceMaximo) {
+                cout << "\033[1;32m[" << habilidadesDanca[k] << "]\033[0m ";  // Verde para o elemento trocado
             } else {
                 cout << habilidadesDanca[k] << " ";  // Normal para os outros elementos
             }
@@ -118,24 +203,41 @@ int main() {
     int escolha;
     cin >> escolha;  // Recebe a escolha do usuário
 
+    // Menu de escolha de ordenação crescente ou decrescente
+    cout << "\nEscolha a ordem de ordenação:\n";
+    cout << "1. Crescente\n";
+    cout << "2. Decrescente\n";
+    int ordem;
+    cin >> ordem;  // Recebe a escolha do usuário para ordem
+
     // Executa a ordenação com base na escolha do usuário
     switch (escolha) {
         case 1:
-            cout << "\nOrdenando usando Bubble Sort...\n";
-            bubbleSort(habilidadesDanca, tamanho);  // Chama a função Bubble Sort
+            if (ordem == 1) {
+                cout << "\nOrdenando usando Bubble Sort Crescente...\n";
+                bubbleSortCrescente(habilidadesDanca, tamanho);
+            } else {
+                cout << "\nOrdenando usando Bubble Sort Decrescente...\n";
+                bubbleSortDecrescente(habilidadesDanca, tamanho);
+            }
             break;
         case 2:
-            cout << "\nOrdenando usando Selection Sort...\n";
-            selectionSort(habilidadesDanca, tamanho);  // Chama a função Selection Sort
+            if (ordem == 1) {
+                cout << "\nOrdenando usando Selection Sort Crescente...\n";
+                selectionSortCrescente(habilidadesDanca, tamanho);
+            } else {
+                cout << "\nOrdenando usando Selection Sort Decrescente...\n";
+                selectionSortDecrescente(habilidadesDanca, tamanho);
+            }
             break;
         default:
             cout << "Opção inválida! Tente novamente.\n";
-            return 0;  // Se a escolha for inválida, encerra o programa
+            return 0;
     }
 
     // Exibe o vetor ordenado
     cout << "\nVetor ordenado:\n";
-    imprimirVetor(habilidadesDanca, tamanho);  // Imprime o vetor após a ordenação
+    imprimirVetor(habilidadesDanca, tamanho);
 
-    return 0;  // Encerra o programa com sucesso
+    return 0;
 }

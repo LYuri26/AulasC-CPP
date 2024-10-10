@@ -2,13 +2,13 @@
 
 using namespace std;
 
-// Função para aplicar o Bubble Sort
+// Função para aplicar o Bubble Sort em ordem decrescente
 void bubbleSort(int quantidadeFas[], int tamanho) {
     bool houveTroca;  // Variável para verificar se houve troca
     for (int i = 0; i < tamanho - 1; i++) {
         houveTroca = false;  // Assume que não houve troca na primeira iteração
         for (int j = 0; j < tamanho - i - 1; j++) {
-            if (quantidadeFas[j] > quantidadeFas[j + 1]) {
+            if (quantidadeFas[j] < quantidadeFas[j + 1]) {  // Comparação ajustada para ordem decrescente
                 // Exibe o vetor antes da troca com cores
                 cout << "\nAntes da troca:\n";
                 for (int k = 0; k < tamanho; k++) {
@@ -50,13 +50,13 @@ void bubbleSort(int quantidadeFas[], int tamanho) {
     }
 }
 
-// Função para aplicar o Selection Sort
+// Função para aplicar o Selection Sort em ordem decrescente
 void selectionSort(int quantidadeFas[], int tamanho) {
     for (int i = 0; i < tamanho - 1; i++) {
-        int indiceMinimo = i;  // Assume que o primeiro elemento é o menor
+        int indiceMaximo = i;  // Assume que o primeiro elemento é o maior
         for (int j = i + 1; j < tamanho; j++) {
-            if (quantidadeFas[j] < quantidadeFas[indiceMinimo]) {
-                indiceMinimo = j;  // Atualiza o índice do menor elemento
+            if (quantidadeFas[j] > quantidadeFas[indiceMaximo]) {  // Comparação ajustada para ordem decrescente
+                indiceMaximo = j;  // Atualiza o índice do maior elemento
             }
         }
 
@@ -65,8 +65,8 @@ void selectionSort(int quantidadeFas[], int tamanho) {
         for (int k = 0; k < tamanho; k++) {
             if (k == i) {
                 cout << "\033[1;34m[" << quantidadeFas[k] << "]\033[0m ";  // Azul para o elemento atual
-            } else if (k == indiceMinimo) {
-                cout << "\033[1;32m[" << quantidadeFas[k] << "]\033[0m ";  // Verde para o menor elemento encontrado
+            } else if (k == indiceMaximo) {
+                cout << "\033[1;32m[" << quantidadeFas[k] << "]\033[0m ";  // Verde para o maior elemento encontrado
             } else {
                 cout << quantidadeFas[k] << " ";  // Normal para os outros elementos
             }
@@ -75,16 +75,16 @@ void selectionSort(int quantidadeFas[], int tamanho) {
 
         // Realizando a troca manual
         int temporario = quantidadeFas[i];
-        quantidadeFas[i] = quantidadeFas[indiceMinimo];
-        quantidadeFas[indiceMinimo] = temporario;
+        quantidadeFas[i] = quantidadeFas[indiceMaximo];
+        quantidadeFas[indiceMaximo] = temporario;
 
         // Exibe o vetor após a troca com cores
         cout << "\nApós a troca:\n";
         for (int k = 0; k < tamanho; k++) {
             if (k == i) {
                 cout << "\033[1;34m[" << quantidadeFas[k] << "]\033[0m ";  // Azul para o elemento trocado
-            } else if (k == indiceMinimo) {
-                cout << "\033[1;32m[" << quantidadeFas[k] << "]\033[0m ";  // Verde para o menor elemento encontrado
+            } else if (k == indiceMaximo) {
+                cout << "\033[1;32m[" << quantidadeFas[k] << "]\033[0m ";  // Verde para o maior elemento encontrado
             } else {
                 cout << quantidadeFas[k] << " ";  // Normal para os outros elementos
             }
@@ -134,7 +134,7 @@ int main() {
     }
 
     // Exibe o vetor ordenado
-    cout << "\nVetor ordenado:\n";
+    cout << "\nVetor ordenado (decrescente):\n";
     imprimirVetor(quantidadeFas, tamanho);  // Imprime o vetor após a ordenação
 
     return 0;  // Encerra o programa com sucesso
