@@ -3,7 +3,7 @@
 using namespace std;
 
 // Função para aplicar o Bubble Sort em ordem decrescente
-void bubbleSort(int pontuacao[], int tamanho) {
+void bubbleSort(float pontuacao[], int tamanho) {
     bool houveTroca;  // Variável para verificar se houve troca
     for (int i = 0; i < tamanho - 1; i++) {
         houveTroca = false;  // Assume que não houve troca na primeira iteração
@@ -23,7 +23,7 @@ void bubbleSort(int pontuacao[], int tamanho) {
                 cout << "\n";
 
                 // Realizando a troca manual
-                int temporario = pontuacao[j];
+                float temporario = pontuacao[j];
                 pontuacao[j] = pontuacao[j + 1];
                 pontuacao[j + 1] = temporario;
 
@@ -51,9 +51,9 @@ void bubbleSort(int pontuacao[], int tamanho) {
 }
 
 // Função para aplicar o Insertion Sort em ordem decrescente
-void insertionSort(int pontuacao[], int tamanho) {
+void insertionSort(float pontuacao[], int tamanho) {
     for (int i = 1; i < tamanho; i++) {
-        int chave = pontuacao[i];  // Armazena o elemento atual
+        float chave = pontuacao[i];  // Armazena o elemento atual
         int j = i - 1;
 
         // Mova os elementos do vetor que são menores do que a chave para uma posição à frente
@@ -74,7 +74,7 @@ void insertionSort(int pontuacao[], int tamanho) {
 }
 
 // Função para exibir o vetor
-void imprimirVetor(int pontuacao[], int tamanho) {
+void imprimirVetor(float pontuacao[], int tamanho) {
     for (int i = 0; i < tamanho; i++) {
         cout << pontuacao[i] << " ";
     }
@@ -84,7 +84,7 @@ void imprimirVetor(int pontuacao[], int tamanho) {
 // Função principal
 int main() {
     // Vetor com a pontuação de crítica dos álbuns (de 0 a 100)
-    int pontuacao[] = {95, 89, 88, 92, 85, 91, 97, 94, 87, 90, 96, 93, 88, 84, 82, 93, 96, 91, 94, 97, 92, 90, 85, 95, 89, 87, 90, 91, 96, 93};
+    float pontuacao[] = {89.0651, 95.4805, 94.0230, 86.3919, 96.7627, 83.6630, 96.2819, 90.8391, 81.4960, 83.8841, 82.5377, 99.6183, 97.6745, 97.8607, 87.5581, 85.3594, 92.1513, 83.8347, 95.3876, 83.0570, 87.5763, 89.0502, 83.3633, 80.0361, 83.0502, 81.5310, 82.7322, 84.4340, 84.8335, 82.7916, 88.1666, 95.5569, 82.0760, 87.3993, 88.2708, 84.4348, 85.2470, 99.4255, 85.2060, 88.1903, 80.8430, 94.1189, 94.4674, 83.0433, 92.6951, 97.2446, 97.9635, 96.4502, 94.4477, 86.4615};
     int tamanho = 30;  // Tamanho fixo do vetor (30 elementos)
 
     // Exibe o vetor original
